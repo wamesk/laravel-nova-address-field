@@ -1,0 +1,85 @@
+.address-field-group {
+    .radio-wrapper {
+        padding-bottom: 1rem;
+
+        input {
+            margin-right: .5rem;
+        }
+
+        label {
+            margin-right: 1rem;
+        }
+    }
+
+    .input-wrapper {
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .name-row {
+        display: flex;
+        width: 100%;
+
+        .col {
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+            width: 100%;
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .row {
+        display: flex;
+        width: 100%;
+
+        .col {
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+            width: 100%;
+
+            &:first-child {
+                width: 50%;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .company-data {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: .5rem;
+        padding-top: 1rem;
+        width: 100%;
+
+        @media (min-width: 1400px) {
+            width: 60%;
+        }
+
+        .row {
+            display: contents;
+
+            .col {
+                padding-bottom: .5rem;
+
+                &:first-child {
+                    label {
+                        line-height: 36px;
+                        white-space: nowrap;
+                    }
+                }
+            }
+
+            &:last-child {
+                .col {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+}

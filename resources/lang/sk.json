@@ -1,0 +1,17 @@
+{
+    "personal": "Súkromná osoba",
+    "company": "Firma",
+
+    "first_name": "Krstné meno",
+    "last_name": "Priezvisko",
+    "address_suggestions": "Začnite písať adresu...",
+    "street": "Ulica a číslo",
+    "zip_code": "PSČ",
+    "city": "Mesto",
+    "country": "Vyberte krajinu zo zoznamu",
+
+    "company_name": "Názov spoločnosti",
+    "business_id": "IČO",
+    "tax_id": "DIČ",
+    "vat_id": "IČ DPH"
+}
