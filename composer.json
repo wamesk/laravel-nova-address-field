@@ -2,11 +2,11 @@
 	"name": "wamesk/laravel-nova-address-field",
 	"description": "Laravel Nova 4 Address field",
 	"type": "library",
-	"version": "1.0",
+	"version": "1.0.0",
 	"license": "proprietary",
 	"require": {
-        "wamesk/laravel-nova-country": "^1.1"
-    },
+		"wamesk/laravel-nova-country": "^2.0"
+	},
 	"autoload": {
 		"psr-4": {
 			"Wame\\Address\\": "src/"
