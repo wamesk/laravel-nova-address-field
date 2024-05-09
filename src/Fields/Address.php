@@ -40,7 +40,7 @@ class Address extends Field
         ]);
 
         if (!isset($this->meta['country_list'])) {
-            $countryList = Country::query()->where(['status' => CountryStatusEnum::ENABLED->value])->orderBy('title')->pluck('title', 'code')->toArray();
+            $countryList = Country::query()->where(['status' => CountryStatusEnum::ENABLED->value])->orderBy('title')->pluck('title', 'id')->toArray();
             $this->withMeta(['country_list' => $countryList]);
         }
     }
