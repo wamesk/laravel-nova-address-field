@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\SupportsDependentFields;
 use Wame\Address\Casts\AddressCast;
 use Wame\LaravelNovaCountry\Models\Country;
+use Wame\LaravelNovaCountry\Enums\CountryStatusEnum;
 
 class Address extends Field
 {
@@ -39,7 +40,7 @@ class Address extends Field
         ]);
 
         if (!isset($this->meta['country_list'])) {
-            $countryList = Country::query()->where(['status' => Country::STATUS_ENABLED])->orderBy('title')->pluck('title', 'code')->toArray();
+            $countryList = Country::query()->where(['status' => CountryStatusEnum::ENABLED->value])->orderBy('title')->pluck('title', 'code')->toArray();
             $this->withMeta(['country_list' => $countryList]);
         }
     }
