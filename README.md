@@ -12,7 +12,7 @@
 ## Installation
 
 ```bash
-composer require wamesk/laravel-nova-address
+composer require wamesk/laravel-nova-address-field
 ```
 
 
