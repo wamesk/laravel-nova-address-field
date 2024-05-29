@@ -2719,7 +2719,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 10 /* CLASS, PROPS */, _hoisted_6), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.formData.company]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__('company')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_5)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.showCompany && $options.showName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-company_name',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('company_name'),
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return $data.formData.company_name = $event;
@@ -2728,7 +2728,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 10 /* CLASS, PROPS */, _hoisted_8), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.company_name]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$options.showCompany && $options.showName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-first_name',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('first_name'),
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.formData.first_name = $event;
@@ -2737,7 +2737,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 10 /* CLASS, PROPS */, _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.first_name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-last_name',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('last_name'),
         "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
           return $data.formData.last_name = $event;
@@ -2747,7 +2747,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0,
         id: _ctx.currentField.attribute + '-street',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('address_suggestions'),
         value: $data.formData.street,
         modelValue: $data.formData.street,
@@ -2762,7 +2762,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         key: 1,
         id: _ctx.currentField.attribute + '-street',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('street'),
         "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
           return $data.formData.street = $event;
@@ -2771,7 +2771,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 10 /* CLASS, PROPS */, _hoisted_15)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.street]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-zip_code',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('zip_code'),
         "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
           return $data.formData.zip_code = $event;
@@ -2780,7 +2780,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 10 /* CLASS, PROPS */, _hoisted_18), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.zip_code]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-city',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('city'),
         "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
           return $data.formData.city = $event;
@@ -2788,7 +2788,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         required: $options.isRequired('city')
       }, null, 10 /* CLASS, PROPS */, _hoisted_20), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.city]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
         id: _ctx.currentField.attribute + '-country',
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full block form-control form-select form-select-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full block form-control form-control-bordered form-input", _ctx.errorClasses]),
         "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
           return $data.formData.country = $event;
         }),
@@ -2808,7 +2808,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__('business_id')), 9 /* TEXT, PROPS */, _hoisted_29)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-business_id',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('business_id'),
         "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
           return $data.formData.business_id = $event;
@@ -2818,7 +2818,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__('tax_id')), 9 /* TEXT, PROPS */, _hoisted_34)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-tax_id',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('tax_id'),
         "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
           return $data.formData.tax_id = $event;
@@ -2828,7 +2828,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__('vat_id')), 9 /* TEXT, PROPS */, _hoisted_39)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-vat_id',
         type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-input-bordered", _ctx.errorClasses]),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('vat_id'),
         "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
           return $data.formData.vat_id = $event;
