@@ -1,0 +1,30 @@
+<?php
+
+namespace Wame\Address\Cards;
+
+use InteractionDesignFoundation\HtmlCard\HtmlCard;
+use Wame\Address\Casts\AddressCast;
+
+class AddressCard
+{
+    public static function make(
+        string $title,
+        ?AddressCast $address,
+        ?string $editUrl = null,
+        ?string $noAddressText = null,
+        ?string $noAddressButtonText = null,
+    ): HtmlCard
+    {
+        /** @var HtmlCard $htmlCard */
+        $htmlCard = resolve(HtmlCard::class);
+
+        return $htmlCard->width('1/3')
+                ->view('address::address_card', [
+                    'title' => $title,
+                    'address' => $address,
+                    'editUrl' => $editUrl,
+                    'noAddressText' => $noAddressText,
+                    'noAddressButtonText' => $noAddressButtonText,
+                ]);
+    }
+}
