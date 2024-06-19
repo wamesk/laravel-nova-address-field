@@ -13,7 +13,5 @@
     "company_name": "Názov spoločnosti",
     "business_id": "IČO",
     "tax_id": "DIČ",
-    "vat_id": "IČ DPH",
-
-    "no_address": "Žiadna adresa"
+    "vat_id": "IČ DPH"
 }

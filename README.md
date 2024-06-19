@@ -61,7 +61,6 @@ protected function casts(): array
 
 
 ## Repeatable field
-
 Package is also compatible with [Nova repeatable field](https://nova.laravel.com/docs/4.0/resources/repeater-fields.html)
 
 ```php
@@ -76,4 +75,19 @@ If you add the Google Maps API key to the .env, you can search for addresses
 
 ```dotenv
 GOOGLE_MAPS_API_KEY="AIza..."
+```
+
+
+## Helper
+Helpers for preparing a fake address, returned AddressCast
+
+```php
+\Wame\Address\Utils\AddressHelper::fakeAddress();
+\Wame\Address\Utils\AddressHelper::fakeCompanyAddress();
+
+\Wame\Address\Utils\AddressHelper::fakeAddress(['country' => 'SK']);
+\Wame\Address\Utils\AddressHelper::fakeAddress(withName: false);
+
+\Wame\Address\Utils\AddressHelper::fakeAddress()->toArray();
+\Wame\Address\Utils\AddressHelper::fakeAddress()->toJson();
 ```
