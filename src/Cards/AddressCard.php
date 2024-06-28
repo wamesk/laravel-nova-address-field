@@ -13,18 +13,17 @@ class AddressCard
         ?string $editUrl = null,
         ?string $noAddressText = null,
         ?string $noAddressButtonText = null,
-    ): HtmlCard
-    {
+    ): HtmlCard {
         /** @var HtmlCard $htmlCard */
         $htmlCard = resolve(HtmlCard::class);
 
         return $htmlCard->width('1/3')
-                ->view('address::address_card', [
-                    'title' => $title,
-                    'address' => $address,
-                    'editUrl' => $editUrl,
-                    'noAddressText' => $noAddressText,
-                    'noAddressButtonText' => $noAddressButtonText,
-                ]);
+            ->view('vendor.wamesk.laravel-nova-address-field.address_card', [
+                'title' => $title,
+                'address' => $address,
+                'editUrl' => $editUrl,
+                'noAddressText' => $noAddressText,
+                'noAddressButtonText' => $noAddressButtonText,
+            ]);
     }
 }

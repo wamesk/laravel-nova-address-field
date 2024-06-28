@@ -2,7 +2,7 @@
     "personal": "Súkromná osoba",
     "company": "Firma",
 
-    "first_name": "Krstné meno",
+    "first_name:": "Krstné meno",
     "last_name": "Priezvisko",
     "address_suggestions": "Začnite písať adresu...",
     "street": "Ulica a číslo",
@@ -10,8 +10,9 @@
     "city": "Mesto",
     "country": "Vyberte krajinu zo zoznamu",
 
-    "company_name": "Názov spoločnosti",
+    "company_name:": "Názov spoločnosti",
     "business_id": "IČO",
     "tax_id": "DIČ",
-    "vat_id": "IČ DPH"
+    "vat_id": "IČ DPH",
+    "no_address": "Adresa nieje vyplnená."
 }
