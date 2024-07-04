@@ -59,6 +59,32 @@ protected function casts(): array
 }
 ```
 
+### Attributes
+
+```php
+$this->address->firstName; // John
+$this->address->lastName; // Doe
+$this->address->getName(); // John Doe
+$this->address->street; // Baker street 3
+$this->address->zipCode; // 08501
+$this->address->city; // New York
+$this->address->country; // SK
+$this->address->getCountryTitle(); // Slovakia
+$this->address->getCountryData();
+
+$this->billing_address->isCompany; // true|false
+$this->billing_address->companyName; // Apple Inc.
+$this->billing_address->getName(); // Apple Inc.
+$this->billing_address->businessId;
+$this->billing_address->taxId;
+$this->billing_address->vatId;
+$this->billing_address->vatPayer; // true|false
+
+$this->address->isComplete(); // true|false
+
+$this->address->toArray();
+$this->address->toJson();
+```
 
 ## Repeatable field
 Package is also compatible with [Nova repeatable field](https://nova.laravel.com/docs/4.0/resources/repeater-fields.html)

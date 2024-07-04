@@ -35,7 +35,7 @@
                     {{ $noAddressButtonText }}
                 </a>
             @endif
-            @if (!isset($noAddressText) && (!isset($noAddressButtonText) || !isset($editUrl))))
+            @if (!isset($noAddressText) && (!isset($noAddressButtonText) || !isset($editUrl)))
                 {{ __('no_address') }}
             @endif
         </div>
