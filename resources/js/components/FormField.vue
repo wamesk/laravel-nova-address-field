@@ -37,11 +37,12 @@
                     <input
                         :id="currentField.attribute + '-company_name'"
                         type="text"
-                        class="w-full form-control form-input form-control-bordered"
+                        class="w-full form-control form-input form-input-bordered"
                         :class="errorClasses"
                         :placeholder="__('company_name')"
                         v-model="formData.company_name"
                         :required="isRequired('company_name')"
+                        autocomplete="new-address"
                     />
                 </div>
 
@@ -50,11 +51,12 @@
                         <input
                             :id="currentField.attribute + '-first_name'"
                             type="text"
-                            class="w-full form-control form-input form-control-bordered"
+                            class="w-full form-control form-input form-input-bordered"
                             :class="errorClasses"
                             :placeholder="__('first_name')"
                             v-model="formData.first_name"
                             :required="isRequired('company_name')"
+                            autocomplete="new-address"
                         />
                     </div>
 
@@ -62,11 +64,12 @@
                         <input
                             :id="currentField.attribute + '-last_name'"
                             type="text"
-                            class="w-full form-control form-input form-control-bordered"
+                            class="w-full form-control form-input form-input-bordered"
                             :class="errorClasses"
                             :placeholder="__('last_name')"
                             v-model="formData.last_name"
                             :required="isRequired('last_name')"
+                            autocomplete="new-address"
                         />
                     </div>
                 </div>
@@ -76,12 +79,12 @@
                         v-if="currentField.with_address_suggestions && currentField.google_maps_api_key"
                         :id="currentField.attribute + '-street'"
                         type="text"
-                        class="w-full form-control form-input form-control-bordered"
+                        class="w-full form-control form-input form-input-bordered"
                         :class="errorClasses"
                         :placeholder="__('address_suggestions')"
                         :value="formData.street"
                         v-model="formData.street"
-                        autocomplete="nope"
+                        autocomplete="new-address"
                         :required="isRequired('street')"
                         @place_changed="addressSuggestions"
                         @keydown.enter.prevent
@@ -91,11 +94,12 @@
                         v-else
                         :id="currentField.attribute + '-street'"
                         type="text"
-                        class="w-full form-control form-input form-control-bordered"
+                        class="w-full form-control form-input form-input-bordered"
                         :class="errorClasses"
                         :placeholder="__('street')"
                         v-model="formData.street"
                         :required="isRequired('street')"
+                        autocomplete="new-address"
                     />
                 </div>
 
@@ -104,11 +108,12 @@
                         <input
                             :id="currentField.attribute + '-zip_code'"
                             type="text"
-                            class="w-full form-control form-input form-control-bordered"
+                            class="w-full form-control form-input form-input-bordered"
                             :class="errorClasses"
                             :placeholder="__('zip_code')"
                             v-model="formData.zip_code"
                             :required="isRequired('zip_code')"
+                            autocomplete="new-address"
                         />
                     </div>
 
@@ -116,11 +121,12 @@
                         <input
                             :id="currentField.attribute + '-city'"
                             type="text"
-                            class="w-full form-control form-input form-control-bordered"
+                            class="w-full form-control form-input form-input-bordered"
                             :class="errorClasses"
                             :placeholder="__('city')"
                             v-model="formData.city"
                             :required="isRequired('city')"
+                            autocomplete="new-address"
                         />
                     </div>
                 </div>
@@ -128,10 +134,11 @@
                 <div class="flex relative w-full component-select-control select-wrapper">
                     <select
                         :id="currentField.attribute + '-country'"
-                        class="w-full block form-control form-control-bordered form-input"
+                        class="w-full block form-control form-select form-select-bordered"
                         :class="errorClasses"
                         v-model="formData.country"
                         :required="isRequired('country')"
+                        autocomplete="new-address"
                     >
                         <option
                             disabled
@@ -166,10 +173,11 @@
                             <input
                                 :id="currentField.attribute + '-business_id'"
                                 type="text"
-                                class="w-full form-control form-input form-control-bordered"
+                                class="w-full form-control form-input form-input-bordered"
                                 :class="errorClasses"
                                 :placeholder="__('business_id')"
                                 v-model="formData.business_id"
+                                autocomplete="new-address"
                             />
                         </div>
                     </div>
@@ -185,10 +193,11 @@
                             <input
                                 :id="currentField.attribute + '-tax_id'"
                                 type="text"
-                                class="w-full form-control form-input form-control-bordered"
+                                class="w-full form-control form-input form-input-bordered"
                                 :class="errorClasses"
                                 :placeholder="__('tax_id')"
                                 v-model="formData.tax_id"
+                                autocomplete="new-address"
                             />
                         </div>
                     </div>
@@ -204,10 +213,11 @@
                             <input
                                 :id="currentField.attribute + '-vat_id'"
                                 type="text"
-                                class="w-full form-control form-input form-control-bordered"
+                                class="w-full form-control form-input form-input-bordered"
                                 :class="errorClasses"
                                 :placeholder="__('vat_id')"
                                 v-model="formData.vat_id"
+                                autocomplete="new-address"
                             />
                         </div>
                     </div>
