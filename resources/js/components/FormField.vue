@@ -280,7 +280,7 @@ export default {
         * Set the initial, internal value for the field.
         */
         setInitialValue() {
-            let value = this.field.value || ''
+            let value = this.currentField.value || ''
 
             if (value !== '[]') {
                 if (typeof value === 'string' || value instanceof String) {

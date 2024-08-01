@@ -2368,7 +2368,7 @@ __webpack_require__.r(__webpack_exports__);
     * Set the initial, internal value for the field.
     */
     setInitialValue: function setInitialValue() {
-      var value = this.field.value || '';
+      var value = this.currentField.value || '';
       if (value !== '[]') {
         var _value$first_name, _value$last_name, _value$street, _value$zip_code, _value$city, _value$country, _value$company, _value$company_name, _value$business_id, _value$tax_id, _value$vat_id;
         if (typeof value === 'string' || value instanceof String) {
