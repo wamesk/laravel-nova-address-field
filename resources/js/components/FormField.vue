@@ -55,7 +55,7 @@
                             :class="errorClasses"
                             :placeholder="__('first_name')"
                             v-model="formData.first_name"
-                            :required="isRequired('company_name')"
+                            :required="isRequired('first_name')"
                             autocomplete="new-address"
                         />
                     </div>
@@ -340,8 +340,8 @@ export default {
 
             if (defaultFields.includes(name)) {
                 return true
-            } else if ((this.currentField.company === '0' && personalFields.includes(name)) ||
-                (this.currentField.company === '1' && companyFields.includes(name))) {
+            } else if ((this.formData.company === '0' && personalFields.includes(name)) ||
+                (this.formData.company === '1' && companyFields.includes(name))) {
                 return true
             }
 

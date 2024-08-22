@@ -2418,7 +2418,7 @@ __webpack_require__.r(__webpack_exports__);
       var personalFields = ['first_name', 'last_name'];
       if (defaultFields.includes(name)) {
         return true;
-      } else if (this.currentField.company === '0' && personalFields.includes(name) || this.currentField.company === '1' && companyFields.includes(name)) {
+      } else if (this.formData.company === '0' && personalFields.includes(name) || this.formData.company === '1' && companyFields.includes(name)) {
         return true;
       }
       return false;
@@ -2734,7 +2734,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.formData.first_name = $event;
         }),
-        required: $options.isRequired('company_name'),
+        required: $options.isRequired('first_name'),
         autocomplete: "new-address"
       }, null, 10 /* CLASS, PROPS */, _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.first_name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         id: _ctx.currentField.attribute + '-last_name',
@@ -3570,13 +3570,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _autocomplete_vue_vue_type_template_id_5b7498ca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./autocomplete.vue?vue&type=template&id=5b7498ca */ "./node_modules/@fawmi/vue-google-maps/src/components/autocomplete.vue?vue&type=template&id=5b7498ca");
 /* harmony import */ var _autocomplete_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./autocomplete.vue?vue&type=script&lang=js */ "./node_modules/@fawmi/vue-google-maps/src/components/autocomplete.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_autocomplete_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_autocomplete_vue_vue_type_template_id_5b7498ca__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/autocomplete.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_autocomplete_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_autocomplete_vue_vue_type_template_id_5b7498ca__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/autocomplete.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -3690,13 +3690,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _cluster_vue_vue_type_template_id_b97a24d2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cluster.vue?vue&type=template&id=b97a24d2 */ "./node_modules/@fawmi/vue-google-maps/src/components/cluster.vue?vue&type=template&id=b97a24d2");
 /* harmony import */ var _cluster_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cluster.vue?vue&type=script&lang=js */ "./node_modules/@fawmi/vue-google-maps/src/components/cluster.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_cluster_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_cluster_vue_vue_type_template_id_b97a24d2__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/cluster.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_cluster_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_cluster_vue_vue_type_template_id_b97a24d2__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/cluster.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -3849,13 +3849,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _infoWindow_vue_vue_type_template_id_6c9aa5b1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoWindow.vue?vue&type=template&id=6c9aa5b1 */ "./node_modules/@fawmi/vue-google-maps/src/components/infoWindow.vue?vue&type=template&id=6c9aa5b1");
 /* harmony import */ var _infoWindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./infoWindow.vue?vue&type=script&lang=js */ "./node_modules/@fawmi/vue-google-maps/src/components/infoWindow.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_infoWindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_infoWindow_vue_vue_type_template_id_6c9aa5b1__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/infoWindow.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_infoWindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_infoWindow_vue_vue_type_template_id_6c9aa5b1__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/infoWindow.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -3970,7 +3970,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_vue_vue_type_template_id_0c1aca79__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map.vue?vue&type=template&id=0c1aca79 */ "./node_modules/@fawmi/vue-google-maps/src/components/map.vue?vue&type=template&id=0c1aca79");
 /* harmony import */ var _map_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map.vue?vue&type=script&lang=js */ "./node_modules/@fawmi/vue-google-maps/src/components/map.vue?vue&type=script&lang=js");
 /* harmony import */ var _map_vue_vue_type_style_index_0_id_0c1aca79_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./map.vue?vue&type=style&index=0&id=0c1aca79&lang=css */ "./node_modules/@fawmi/vue-google-maps/src/components/map.vue?vue&type=style&index=0&id=0c1aca79&lang=css");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -3978,7 +3978,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_map_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_map_vue_vue_type_template_id_0c1aca79__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/map.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_map_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_map_vue_vue_type_template_id_0c1aca79__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/map.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -4207,13 +4207,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _marker_vue_vue_type_template_id_21eae1a6__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./marker.vue?vue&type=template&id=21eae1a6 */ "./node_modules/@fawmi/vue-google-maps/src/components/marker.vue?vue&type=template&id=21eae1a6");
 /* harmony import */ var _marker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./marker.vue?vue&type=script&lang=js */ "./node_modules/@fawmi/vue-google-maps/src/components/marker.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_marker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_marker_vue_vue_type_template_id_21eae1a6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/marker.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_marker_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_marker_vue_vue_type_template_id_21eae1a6__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"node_modules/@fawmi/vue-google-maps/src/components/marker.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -4374,7 +4374,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DetailField_vue_vue_type_template_id_0224618e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DetailField.vue?vue&type=template&id=0224618e */ "./resources/js/components/DetailField.vue?vue&type=template&id=0224618e");
 /* harmony import */ var _DetailField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DetailField.vue?vue&type=script&lang=js */ "./resources/js/components/DetailField.vue?vue&type=script&lang=js");
 /* harmony import */ var _DetailField_vue_vue_type_style_index_0_id_0224618e_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DetailField.vue?vue&type=style&index=0&id=0224618e&lang=css */ "./resources/js/components/DetailField.vue?vue&type=style&index=0&id=0224618e&lang=css");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -4382,7 +4382,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_DetailField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_DetailField_vue_vue_type_template_id_0224618e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/DetailField.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_DetailField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_DetailField_vue_vue_type_template_id_0224618e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/DetailField.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -4404,13 +4404,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _FormField_vue_vue_type_template_id_c023248a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormField.vue?vue&type=template&id=c023248a */ "./resources/js/components/FormField.vue?vue&type=template&id=c023248a");
 /* harmony import */ var _FormField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormField.vue?vue&type=script&lang=js */ "./resources/js/components/FormField.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_FormField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_FormField_vue_vue_type_template_id_c023248a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/FormField.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_FormField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_FormField_vue_vue_type_template_id_c023248a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/FormField.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -4432,13 +4432,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _IndexField_vue_vue_type_template_id_9e63f81a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexField.vue?vue&type=template&id=9e63f81a */ "./resources/js/components/IndexField.vue?vue&type=template&id=9e63f81a");
 /* harmony import */ var _IndexField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexField.vue?vue&type=script&lang=js */ "./resources/js/components/IndexField.vue?vue&type=script&lang=js");
-/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_IndexField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_IndexField_vue_vue_type_template_id_9e63f81a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/IndexField.vue"]])
+const __exports__ = /*#__PURE__*/(0,_Users_sucho_WAME_Laravel_sendy_vendor_wamesk_laravel_nova_address_field_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_IndexField_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_IndexField_vue_vue_type_template_id_9e63f81a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/IndexField.vue"]])
 /* hot reload */
 if (false) {}
 
