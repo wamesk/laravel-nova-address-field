@@ -222,6 +222,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div v-if="currentField.with_phone" class="phone-row">
+                    <div class="input-wrapper col">
+                        <input
+                            :id="currentField.attribute + '-phone'"
+                            type="tel"
+                            class="w-full form-control form-input form-input-bordered"
+                            :class="errorClasses"
+                            :placeholder="__('phone')"
+                            v-model="formData.phone"
+                            :required="currentField.required"
+                            autocomplete="new-address"
+                        />
+                    </div>
+                </div>
             </div>
         </template>
     </DefaultField>
@@ -257,6 +272,7 @@ export default {
                 business_id: '',
                 tax_id: '',
                 vat_id: '',
+                phone: '',
             }
         }
     },
@@ -301,6 +317,7 @@ export default {
                 this.formData.business_id = value.business_id ?? ''
                 this.formData.tax_id = value.tax_id ?? ''
                 this.formData.vat_id = value.vat_id ?? ''
+                this.formData.phone = value.phone ?? ''
             }
 
             this.value = value

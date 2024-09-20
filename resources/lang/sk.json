@@ -13,5 +13,7 @@
     "company_name": "Názov spoločnosti",
     "business_id": "IČO",
     "tax_id": "DIČ",
-    "vat_id": "IČ DPH"
+    "vat_id": "IČ DPH",
+
+    "phone": "Telefón"
 }

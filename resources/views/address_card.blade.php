@@ -25,6 +25,7 @@
                 @if ($address->getBusinessId()) <span>{{ __('business_id') }}: {{ $address->getBusinessId()}}</span> @endif
                 @if ($address->getTaxId()) <span>{{ __('tax_id') }}: {{ $address->getTaxId()}}</span> @endif
                 @if ($address->getVatId()) <span>{{ __('vat_id') }}: {{ $address->getVatId()}}</span> @endif
+                @if ($address->getPhone()) <span>{{ __('phone') }}: {{ $address->getPhone()}}</span> @endif
             </div>
         </div>
     @else

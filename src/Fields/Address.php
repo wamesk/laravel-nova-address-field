@@ -36,6 +36,7 @@ class Address extends Field
             'with_company' => true,
             'with_company_autocomplete' => true,
             'with_name' => true,
+            'with_phone' => false,
         ]);
 
         if (!isset($this->meta['country_list'])) {
@@ -114,5 +115,13 @@ class Address extends Field
     public function withoutName(): Address
     {
         return $this->withMeta(['with_name' => false]);
+    }
+
+    /**
+     * Show phone input
+     */
+    public function withPhone(): Address
+    {
+        return $this->withMeta(['with_phone' => true]);
     }
 }

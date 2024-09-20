@@ -7,10 +7,11 @@
             {{ item.zip_code }} {{ item.city }}<br>
             {{ country(item.country) }}
 
-            <div v-if="item.company === '1'" class="mt-2">
+            <div v-if="item.company === '1' || field.with_phone" class="mt-2">
                 <div v-if="item.business_id">{{ __('business_id') }} {{ item.business_id }}</div>
                 <div v-if="item.tax_id">{{ __('tax_id') }} {{ item.tax_id }}</div>
                 <div v-if="item.vat_id">{{ __('vat_id') }} {{ item.vat_id }}</div>
+                <div v-if="item.phone">{{ __('phone') }} {{ item.phone }}</div>
             </div>
         </div>
     </div>
@@ -22,10 +23,11 @@
         {{ address.zip_code }} {{ address.city }}<br>
         {{ country(address.country) }}
 
-        <div v-if="address.company === '1'" class="mt-2">
+        <div v-if="address.company === '1' || field.with_phone" class="mt-2">
             <div v-if="address.business_id">{{ __('business_id') }}: {{ address.business_id }}</div>
             <div v-if="address.tax_id">{{ __('tax_id') }}: {{ address.tax_id }}</div>
             <div v-if="address.vat_id">{{ __('vat_id') }}: {{ address.vat_id }}</div>
+            <div v-if="address.phone">{{ __('phone') }}: {{ address.phone }}</div>
         </div>
     </div>
 

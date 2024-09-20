@@ -63,4 +63,8 @@
 .address-field-group .company-data .row:last-child .col {
   padding-bottom: 0;
 }
+.address-field-group .phone-row {
+  padding-top: 1rem;
+  padding-bottom: 0;
+}
 

@@ -26,6 +26,7 @@ class AddressCast implements Arrayable, Castable
     protected ?string $taxId;
     protected ?string $vatId;
     protected bool $vatPayer = false;
+    protected ?string $phone;
 
     public function __construct(?array $data = [])
     {
@@ -40,6 +41,7 @@ class AddressCast implements Arrayable, Castable
         $this->businessId = $data['business_id'] ?? null;
         $this->taxId = $data['tax_id'] ?? null;
         $this->vatId = $data['vat_id'] ?? null;
+        $this->phone = $data['phone'] ?? null;
     }
 
     public function __get(string $name): mixed
@@ -84,6 +86,7 @@ class AddressCast implements Arrayable, Castable
             'business_id' => $this->businessId,
             'tax_id' => $this->taxId,
             'vat_id' => $this->vatId,
+            'phone' => $this->phone,
         ];
     }
 
@@ -125,6 +128,10 @@ class AddressCast implements Arrayable, Castable
                 // Normalize
                 if (isset($value['zip_code'])) {
                     $value['zip_code'] = str_replace(' ', '', $value['zip_code']);
+                }
+
+                if (isset($value['phone'])) {
+                    $value['phone'] = str_replace(' ', '', $value['phone']);
                 }
 
                 return [$key => json_encode($value)];
@@ -218,6 +225,11 @@ class AddressCast implements Arrayable, Castable
         return '' !== $this->vatId && null !== $this->vatId;
     }
 
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
     public function isComplete(): bool
     {
         return (bool) (
@@ -302,6 +314,13 @@ class AddressCast implements Arrayable, Castable
     public function setVatId(?string $vatId): self
     {
         $this->vatId = $vatId;
+
+        return $this;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = str_replace(' ', '', $phone) ?? null;
 
         return $this;
     }
