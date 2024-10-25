@@ -4,9 +4,12 @@ declare(strict_types = 1);
 
 namespace Wame\Address\Fields;
 
+use Exception;
+use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\SupportsDependentFields;
 use Wame\Address\Casts\AddressCast;
+use Wame\LaravelNovaCountry\Enums\CountryStatusEnum;
 use Wame\LaravelNovaCountry\Models\Country;
 
 class Address extends Field
@@ -40,7 +43,7 @@ class Address extends Field
         ]);
 
         if (!isset($this->meta['country_list'])) {
-            $countryList = Country::query()->where(['status' => Country::STATUS_ENABLED])->orderBy('title')->pluck('title', 'code')->toArray();
+            $countryList = $this->getCountryList();
             $this->withMeta(['country_list' => $countryList]);
         }
     }
@@ -123,5 +126,40 @@ class Address extends Field
     public function withPhone(): Address
     {
         return $this->withMeta(['with_phone' => true]);
+    }
+
+    /**
+     * @return array|mixed|mixed[]
+     * @throws \JsonException
+     */
+    private function getCountryList(): mixed
+    {
+        $version = $this->getCountryPackageVersion();
+
+        if (Str::startsWith($version, '2.')) {
+            return Country::query()->where(['status' => CountryStatusEnum::ENABLED])->orderBy('title')->pluck('title', 'id')->toArray();
+        }
+
+        return Country::query()->where(['status' => Country::STATUS_ENABLED])->orderBy('title')->pluck('title', 'code')->toArray();
+    }
+
+    /**
+     * @return mixed
+     * @throws \JsonException
+     * @throws Exception
+     */
+    public function getCountryPackageVersion(): mixed
+    {
+        $composerLockFile = base_path('composer.lock');
+        $packageName = 'wamesk/laravel-nova-country';
+        $composerData = json_decode(file_get_contents($composerLockFile), true, 512, JSON_THROW_ON_ERROR);
+
+        foreach ($composerData['packages'] as $package) {
+            if ($package['name'] === $packageName) {
+                return $package['version'];
+            }
+        }
+
+        throw new Exception('Package' . $packageName . 'not found');
     }
 }
