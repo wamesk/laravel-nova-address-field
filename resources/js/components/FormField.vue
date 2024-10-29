@@ -37,7 +37,7 @@
                     <input
                         :id="currentField.attribute + '-company_name'"
                         type="text"
-                        class="w-full form-control form-input form-input-bordered"
+                        class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
                         :placeholder="__('company_name')"
                         v-model="formData.company_name"
@@ -51,7 +51,7 @@
                         <input
                             :id="currentField.attribute + '-first_name'"
                             type="text"
-                            class="w-full form-control form-input form-input-bordered"
+                            class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
                             :placeholder="__('first_name')"
                             v-model="formData.first_name"
@@ -64,7 +64,7 @@
                         <input
                             :id="currentField.attribute + '-last_name'"
                             type="text"
-                            class="w-full form-control form-input form-input-bordered"
+                            class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
                             :placeholder="__('last_name')"
                             v-model="formData.last_name"
@@ -79,7 +79,7 @@
                         v-if="currentField.with_address_suggestions && currentField.google_maps_api_key"
                         :id="currentField.attribute + '-street'"
                         type="text"
-                        class="w-full form-control form-input form-input-bordered"
+                        class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
                         :placeholder="__('address_suggestions')"
                         :value="formData.street"
@@ -94,7 +94,7 @@
                         v-else
                         :id="currentField.attribute + '-street'"
                         type="text"
-                        class="w-full form-control form-input form-input-bordered"
+                        class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
                         :placeholder="__('street')"
                         v-model="formData.street"
@@ -108,7 +108,7 @@
                         <input
                             :id="currentField.attribute + '-zip_code'"
                             type="text"
-                            class="w-full form-control form-input form-input-bordered"
+                            class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
                             :placeholder="__('zip_code')"
                             v-model="formData.zip_code"
@@ -121,7 +121,7 @@
                         <input
                             :id="currentField.attribute + '-city'"
                             type="text"
-                            class="w-full form-control form-input form-input-bordered"
+                            class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
                             :placeholder="__('city')"
                             v-model="formData.city"
@@ -134,7 +134,7 @@
                 <div class="flex relative w-full component-select-control select-wrapper">
                     <select
                         :id="currentField.attribute + '-country'"
-                        class="w-full block form-control form-select form-select-bordered"
+                        class="relative flex items-center form-control form-input form-control-bordered form-select pr-6 form-select-bordered"
                         :class="errorClasses"
                         v-model="formData.country"
                         :required="isRequired('country')"
@@ -173,7 +173,7 @@
                             <input
                                 :id="currentField.attribute + '-business_id'"
                                 type="text"
-                                class="w-full form-control form-input form-input-bordered"
+                                class="w-full form-control form-input form-control-bordered"
                                 :class="errorClasses"
                                 :placeholder="__('business_id')"
                                 v-model="formData.business_id"
@@ -193,7 +193,7 @@
                             <input
                                 :id="currentField.attribute + '-tax_id'"
                                 type="text"
-                                class="w-full form-control form-input form-input-bordered"
+                                class="w-full form-control form-input form-control-bordered"
                                 :class="errorClasses"
                                 :placeholder="__('tax_id')"
                                 v-model="formData.tax_id"
@@ -213,7 +213,7 @@
                             <input
                                 :id="currentField.attribute + '-vat_id'"
                                 type="text"
-                                class="w-full form-control form-input form-input-bordered"
+                                class="w-full form-control form-input form-control-bordered"
                                 :class="errorClasses"
                                 :placeholder="__('vat_id')"
                                 v-model="formData.vat_id"
@@ -228,7 +228,7 @@
                         <input
                             :id="currentField.attribute + '-phone'"
                             type="tel"
-                            class="w-full form-control form-input form-input-bordered"
+                            class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
                             :placeholder="__('phone')"
                             v-model="formData.phone"
@@ -273,6 +273,8 @@ export default {
                 tax_id: '',
                 vat_id: '',
                 phone: '',
+                latitude: '',
+                longitude: '',
             }
         }
     },
@@ -318,6 +320,8 @@ export default {
                 this.formData.tax_id = value.tax_id ?? ''
                 this.formData.vat_id = value.vat_id ?? ''
                 this.formData.phone = value.phone ?? ''
+                this.formData.latitude = value.latitude ?? ''
+                this.formData.longitude = value.longitude ?? ''
             }
 
             this.value = value
@@ -344,6 +348,8 @@ export default {
             this.formData.zip_code = address.zipCode
             this.formData.city = address.city
             this.formData.country = address.country
+            this.formData.latitude = address.latitude
+            this.formData.longitude = address.longitude
         },
 
         isRequired(name) {

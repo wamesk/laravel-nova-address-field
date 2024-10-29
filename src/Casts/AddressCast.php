@@ -27,6 +27,8 @@ class AddressCast implements Arrayable, Castable
     protected ?string $vatId;
     protected bool $vatPayer = false;
     protected ?string $phone;
+    protected ?float $latitude;
+    protected ?float $longitude;
 
     public function __construct(?array $data = [])
     {
@@ -42,6 +44,8 @@ class AddressCast implements Arrayable, Castable
         $this->taxId = $data['tax_id'] ?? null;
         $this->vatId = $data['vat_id'] ?? null;
         $this->phone = $data['phone'] ?? null;
+        $this->latitude = $data['latitude'] ?? null;
+        $this->longitude = $data['longitude'] ?? null;
     }
 
     public function __get(string $name): mixed
@@ -87,6 +91,8 @@ class AddressCast implements Arrayable, Castable
             'tax_id' => $this->taxId,
             'vat_id' => $this->vatId,
             'phone' => $this->phone,
+            'latitude' => $this->latitude,
+            '$this->longitude' => $this->longitude,
         ];
     }
 
@@ -230,6 +236,16 @@ class AddressCast implements Arrayable, Castable
         return $this->phone;
     }
 
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
     public function isComplete(): bool
     {
         return (bool) (
@@ -324,4 +340,19 @@ class AddressCast implements Arrayable, Castable
 
         return $this;
     }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+    
 }

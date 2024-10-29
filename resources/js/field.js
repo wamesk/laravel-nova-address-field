@@ -8,7 +8,9 @@ Nova.booting((app, store) => {
     app.use(VueGoogleMaps, {
         load: {
             key: Nova.appConfig.google_maps_api_key,
-            libraries: 'places'
+            libraries: 'places',
+            v: 'weekly',
+            loading: 'async'
         }
     })
 

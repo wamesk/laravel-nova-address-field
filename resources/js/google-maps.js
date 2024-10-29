@@ -27,7 +27,9 @@ function getAddressFromPlace(place) {
         street: '',
         region: '',
         city: '',
-        country: ''
+        country: '',
+        latitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng(),
     };
 
     place.address_components.forEach(item => {

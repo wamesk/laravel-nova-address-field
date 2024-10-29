@@ -1,1 +1,70 @@
-.address-field-group .radio-wrapper{padding-bottom:1rem}.address-field-group .radio-wrapper input{margin-right:.5rem}.address-field-group .radio-wrapper label{margin-right:1rem}.address-field-group .input-wrapper{padding-bottom:1rem;position:relative}.address-field-group .name-row{display:flex;width:100%}.address-field-group .name-row .col{padding-bottom:1rem;padding-right:1rem;width:100%}.address-field-group .name-row .col:last-child{padding-right:0}.address-field-group .row{display:flex;width:100%}.address-field-group .row .col{padding-bottom:1rem;padding-right:1rem;width:100%}.address-field-group .row .col:first-child{width:50%}.address-field-group .row .col:last-child{padding-right:0}.address-field-group .company-data{grid-gap:.5rem;display:grid;grid-template-columns:auto 1fr;padding-top:1rem;width:100%}@media (min-width:1400px){.address-field-group .company-data{width:60%}}.address-field-group .company-data .row{display:contents}.address-field-group .company-data .row .col{padding-bottom:.5rem}.address-field-group .company-data .row .col:first-child label{line-height:36px;white-space:nowrap}.address-field-group .company-data .row:last-child .col{padding-bottom:0}.address-field-group .phone-row{padding-bottom:0;padding-top:1rem}
+.address-field-group .radio-wrapper {
+  padding-bottom: 1rem;
+}
+.address-field-group .radio-wrapper input {
+  margin-right: 0.5rem;
+}
+.address-field-group .radio-wrapper label {
+  margin-right: 1rem;
+}
+.address-field-group .input-wrapper {
+  position: relative;
+  padding-bottom: 1rem;
+}
+.address-field-group .name-row {
+  display: flex;
+  width: 100%;
+}
+.address-field-group .name-row .col {
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+}
+.address-field-group .name-row .col:last-child {
+  padding-right: 0;
+}
+.address-field-group .row {
+  display: flex;
+  width: 100%;
+}
+.address-field-group .row .col {
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+}
+.address-field-group .row .col:first-child {
+  width: 50%;
+}
+.address-field-group .row .col:last-child {
+  padding-right: 0;
+}
+.address-field-group .company-data {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 0.5rem;
+  padding-top: 1rem;
+  width: 100%;
+}
+@media (min-width: 1400px) {
+  .address-field-group .company-data {
+    width: 60%;
+  }
+}
+.address-field-group .company-data .row {
+  display: contents;
+}
+.address-field-group .company-data .row .col {
+  padding-bottom: 0.5rem;
+}
+.address-field-group .company-data .row .col:first-child label {
+  line-height: 36px;
+  white-space: nowrap;
+}
+.address-field-group .company-data .row:last-child .col {
+  padding-bottom: 0;
+}
+.address-field-group .phone-row {
+  padding-top: 1rem;
+  padding-bottom: 0;
+}
+
