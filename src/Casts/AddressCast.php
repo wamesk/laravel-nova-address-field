@@ -27,8 +27,8 @@ class AddressCast implements Arrayable, Castable
     protected ?string $vatId;
     protected bool $vatPayer = false;
     protected ?string $phone;
-    protected ?float $latitude;
-    protected ?float $longitude;
+    protected float|string|null $latitude;
+    protected float|string|null $longitude;
 
     public function __construct(?array $data = [])
     {
@@ -341,14 +341,14 @@ class AddressCast implements Arrayable, Castable
         return $this;
     }
 
-    public function setLatitude(?float $latitude): self
+    public function setLatitude($latitude): self
     {
         $this->latitude = $latitude;
 
         return $this;
     }
 
-    public function setLongitude(?float $longitude): self
+    public function setLongitude($longitude): self
     {
         $this->longitude = $longitude;
 
