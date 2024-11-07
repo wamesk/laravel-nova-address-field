@@ -92,7 +92,7 @@ class AddressCast implements Arrayable, Castable
             'vat_id' => $this->vatId,
             'phone' => $this->phone,
             'latitude' => $this->latitude,
-            '$this->longitude' => $this->longitude,
+            'longitude' => $this->longitude,
         ];
     }
 
