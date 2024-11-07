@@ -7,7 +7,7 @@ use Wame\Address\Enums\IsCompanyEnum;
 
 class AddressHelper
 {
-    public static function fakeAddress(array $data = [], bool $withName = true): AddressCast
+    public static function fakeAddress(array $data = [], bool $withName = true, bool $withLatLng = false): AddressCast
     {
         if (!isset($data['first_name']) && $withName) {
             $data['first_name'] = fake()->firstName();
@@ -29,12 +29,19 @@ class AddressHelper
             $data['country'] = fake()->countryCode();
         }
 
+        if (!isset($data['latitude']) && $withLatLng) {
+            $data['latitude'] = fake()->latitude();
+        }
+        if (!isset($data['longitude']) && $withLatLng) {
+            $data['longitude'] = fake()->longitude();
+        }
+
         return new AddressCast($data);
     }
 
-    public static function fakeCompanyAddress(array $data = []): AddressCast
+    public static function fakeCompanyAddress(array $data = [], bool $withLatLng = false): AddressCast
     {
-        $data = array_replace(self::fakeAddress(withName: false)->toArray(), $data);
+        $data = array_replace(self::fakeAddress(withName: false, withLatLng: $withLatLng)->toArray(), $data);
 
         $data['company'] = IsCompanyEnum::YES->value;
 
