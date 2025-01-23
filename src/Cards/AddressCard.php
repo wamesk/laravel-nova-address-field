@@ -3,7 +3,7 @@
 namespace Wame\Address\Cards;
 
 use InteractionDesignFoundation\HtmlCard\HtmlCard;
-use Wame\Address\Casts\AddressCast;
+use Wame\LaravelNovaAddressField\Casts\AddressCast;
 
 class AddressCard
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Wame\Address\Fields;
+namespace Wame\LaravelNovaAddressField\Fields;
 
 use Exception;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\SupportsDependentFields;
-use Wame\Address\Casts\AddressCast;
+use Wame\LaravelNovaAddressField\Casts\AddressCast;
 use Wame\LaravelNovaCountry\Enums\CountryStatusEnum;
 use Wame\LaravelNovaCountry\Models\Country;
 

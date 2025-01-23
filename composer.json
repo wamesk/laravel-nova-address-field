@@ -1,22 +1,24 @@
 {
 	"name": "wamesk/laravel-nova-address-field",
-	"description": "Laravel Nova 4 Address field",
+	"description": "Laravel Nova Address field",
 	"type": "library",
-	"version": "1.4.3",
+	"version": "5.0.0",
 	"license": "proprietary",
 	"require": {
-        "wamesk/laravel-nova-country": "^1.1|^2.0"
-    },
+		"interaction-design-foundation/nova-html-card": "^3.4",
+		"laravel/nova": "^4.0|^5.0",
+		"rinvex/countries": "^9.0"
+	},
 	"autoload": {
 		"psr-4": {
-			"Wame\\Address\\": "src/"
+			"Wame\\LaravelNovaAddressField\\": "src/"
 		}
 	},
 	"minimum-stability": "stable",
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Wame\\Address\\Providers\\LaravelNovaAddressFieldServiceProvider"
+				"Wame\\LaravelNovaAddressField\\Providers\\LaravelNovaAddressFieldServiceProvider"
 			]
 		}
 	}

@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- `laravel/nova: ^4.0`
+- `laravel/nova: ^5.0`
 
 
 ## Installation

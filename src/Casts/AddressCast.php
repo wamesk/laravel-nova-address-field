@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Wame\Address\Casts;
+namespace Wame\LaravelNovaAddressField\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Database\Eloquent\SerializesCastableAttributes;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use Rinvex\Country\Country;
-use Wame\Address\Enums\IsCompanyEnum;
+use Wame\LaravelNovaAddressField\Enums\IsCompanyEnum;
 
 class AddressCast implements Arrayable, Castable
 {
