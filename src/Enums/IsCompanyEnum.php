@@ -1,6 +1,6 @@
 <?php
 
-namespace Wame\Address\Enums;
+namespace Wame\LaravelNovaAddressField\Enums;
 
 enum IsCompanyEnum: string
 {

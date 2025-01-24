@@ -1,6 +1,6 @@
 <?php
 
-namespace Wame\Address\Fields;
+namespace Wame\LaravelNovaAddressField\Fields;
 
 use Laravel\Nova\Fields\Repeater\Repeatable;
 use Laravel\Nova\Http\Requests\NovaRequest;

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Wame\Address\Providers;
+namespace Wame\LaravelNovaAddressField\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;

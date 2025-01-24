@@ -134,7 +134,7 @@
                 <div class="flex relative w-full component-select-control select-wrapper">
                     <select
                         :id="currentField.attribute + '-country'"
-                        class="relative flex items-center form-control form-input form-control-bordered form-select pr-6 form-select-bordered"
+                        class="w-full block form-control form-control-bordered form-input"
                         :class="errorClasses"
                         v-model="formData.country"
                         :required="isRequired('country')"
@@ -158,7 +158,7 @@
                         </option>
                     </select>
 
-                    <svg class="shrink-0 pointer-events-none form-select-arrow component-icon-arrow" xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path class="fill-current" d="M8.292893.292893c.390525-.390524 1.023689-.390524 1.414214 0 .390524.390525.390524 1.023689 0 1.414214l-4 4c-.390525.390524-1.023689.390524-1.414214 0l-4-4c-.390524-.390525-.390524-1.023689 0-1.414214.390525-.390524 1.023689-.390524 1.414214 0L5 3.585786 8.292893.292893z"></path></svg>
+                    <span class="pointer-events-none absolute inset-y-0 right-[11px] flex items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="w-5 h-5 shrink-0 text-gray-700 dark:text-gray-400"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path></svg></span>
                 </div>
 
                 <div v-show="showCompany" class="company-data">

@@ -1,9 +1,9 @@
 <?php
 
-namespace Wame\Address\Utils;
+namespace Wame\LaravelNovaAddressField\Utils;
 
-use Wame\Address\Casts\AddressCast;
-use Wame\Address\Enums\IsCompanyEnum;
+use Wame\LaravelNovaAddressField\Casts\AddressCast;
+use Wame\LaravelNovaAddressField\Enums\IsCompanyEnum;
 
 class AddressHelper
 {
