@@ -8,9 +8,8 @@ use Exception;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\SupportsDependentFields;
+use Rinvex\Country\CountryLoader;
 use Wame\LaravelNovaAddressField\Casts\AddressCast;
-use Wame\LaravelNovaCountry\Enums\CountryStatusEnum;
-use Wame\LaravelNovaCountry\Models\Country;
 
 class Address extends Field
 {
@@ -23,7 +22,7 @@ class Address extends Field
      */
     public $component = 'address';
 
-    protected $dependentShouldEmitChangesEvent = true;
+    protected ?bool $dependentShouldEmitChangesEvent = true;
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
@@ -129,37 +128,20 @@ class Address extends Field
     }
 
     /**
-     * @return array|mixed|mixed[]
-     * @throws \JsonException
+     * @return array
+     * @throws \Rinvex\Country\CountryLoaderException
      */
-    private function getCountryList(): mixed
+    private function getCountryList(): array
     {
-        $version = $this->getCountryPackageVersion();
+        $return = [];
 
-        if (Str::startsWith($version, '2.')) {
-            return Country::query()->where(['status' => CountryStatusEnum::ENABLED])->orderBy('title')->pluck('title', 'id')->toArray();
+        $list = CountryLoader::countries();
+        foreach ($list as $item) {
+            $country = country($item['iso_3166_1_alpha2']);
+            
+            $return[$country->getIsoAlpha2()] = $country->getName();
         }
 
-        return Country::query()->where(['status' => Country::STATUS_ENABLED])->orderBy('title')->pluck('title', 'code')->toArray();
-    }
-
-    /**
-     * @return mixed
-     * @throws \JsonException
-     * @throws Exception
-     */
-    public function getCountryPackageVersion(): mixed
-    {
-        $composerLockFile = base_path('composer.lock');
-        $packageName = 'wamesk/laravel-nova-country';
-        $composerData = json_decode(file_get_contents($composerLockFile), true, 512, JSON_THROW_ON_ERROR);
-
-        foreach ($composerData['packages'] as $package) {
-            if ($package['name'] === $packageName) {
-                return $package['version'];
-            }
-        }
-
-        throw new Exception('Package' . $packageName . 'not found');
+        return $return;
     }
 }
