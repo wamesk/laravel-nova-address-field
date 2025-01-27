@@ -11,17 +11,24 @@
   position: relative;
   padding-bottom: 1rem;
 }
-.address-field-group .name-row {
+.address-field-group .name-row,
+.address-field-group .gps-row {
   display: flex;
   width: 100%;
 }
-.address-field-group .name-row .col {
+.address-field-group .name-row .col,
+.address-field-group .gps-row .col {
   padding-right: 1rem;
   padding-bottom: 1rem;
   width: 100%;
 }
-.address-field-group .name-row .col:last-child {
+.address-field-group .name-row .col:last-child,
+.address-field-group .gps-row .col:last-child {
   padding-right: 0;
+}
+.address-field-group .gps-row .input-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 0;
 }
 .address-field-group .row {
   display: flex;

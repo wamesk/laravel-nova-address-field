@@ -39,6 +39,7 @@ class Address extends Field
             'with_company_autocomplete' => true,
             'with_name' => true,
             'with_phone' => false,
+            'with_gps' => false,
         ]);
 
         if (!isset($this->meta['country_list'])) {
@@ -128,6 +129,14 @@ class Address extends Field
     }
 
     /**
+     * Show latitude and longitude inputs
+     */
+    public function withGPS(): Address
+    {
+        return $this->withMeta(['with_gps' => true]);
+    }
+
+    /**
      * @return array
      * @throws \Rinvex\Country\CountryLoaderException
      */
@@ -138,8 +147,9 @@ class Address extends Field
         $list = CountryLoader::countries();
         foreach ($list as $item) {
             $country = country($item['iso_3166_1_alpha2']);
+            $countryCode = $country->getIsoAlpha2();
             
-            $return[$country->getIsoAlpha2()] = $country->getName();
+            $return[$countryCode] = $country->getName() . ' (' . $countryCode . ')';
         }
 
         return $return;

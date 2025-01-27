@@ -32,20 +32,20 @@ class AddressCast implements Arrayable, Castable
 
     public function __construct(?array $data = [])
     {
-        $this->firstName = $data['first_name'] ?? null;
-        $this->lastName = $data['last_name'] ?? null;
-        $this->street = $data['street'] ?? null;
-        $this->city = $data['city'] ?? null;
-        $this->zipCode = $data['zip_code'] ?? null;
-        $this->country = $data['country'] ?? null;
+        $this->firstName = $data['first_name'] ?? '';
+        $this->lastName = $data['last_name'] ?? '';
+        $this->street = $data['street'] ?? '';
+        $this->city = $data['city'] ?? '';
+        $this->zipCode = $data['zip_code'] ?? '';
+        $this->country = $data['country'] ?? '';
         $this->isCompany = isset($data['company']) && $data['company'] ? IsCompanyEnum::from($data['company']) : IsCompanyEnum::NO;
-        $this->companyName = $data['company_name'] ?? null;
-        $this->businessId = $data['business_id'] ?? null;
-        $this->taxId = $data['tax_id'] ?? null;
-        $this->vatId = $data['vat_id'] ?? null;
-        $this->phone = $data['phone'] ?? null;
-        $this->latitude = $data['latitude'] ?? null;
-        $this->longitude = $data['longitude'] ?? null;
+        $this->companyName = $data['company_name'] ?? '';
+        $this->businessId = $data['business_id'] ?? '';
+        $this->taxId = $data['tax_id'] ?? '';
+        $this->vatId = $data['vat_id'] ?? '';
+        $this->phone = $data['phone'] ?? '';
+        $this->latitude = $data['latitude'] ?? '';
+        $this->longitude = $data['longitude'] ?? '';
     }
 
     public function __get(string $name): mixed

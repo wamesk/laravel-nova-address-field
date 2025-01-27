@@ -32,6 +32,15 @@ Address::make(__('customer.field.address'), 'address')
 | `withoutAddressSuggestions()`       | Without address suggestions if set Google Maps API key |
 | `defaultShowCompany()`              | Show default company tab                               |
 | `withoutName()`                     | Without personal user name                             |
+| `withPhone()`                       | Show phone input                                       |
+| `withGPS()`                         | Show latitude and longitude inputs                     |
+
+```php
+Address::make(__('customer.field.address'), 'address')
+    ->withoutCompany()
+    ->withoutName()
+    ->withGPS()
+```
 
 ### Cast
 Setting casts in model
@@ -80,6 +89,11 @@ $this->billing_address->taxId;
 $this->billing_address->vatId;
 $this->billing_address->vatPayer; // true|false
 
+$this->addess->phone;
+
+$this->addess->latitude;
+$this->addess->longitude;
+
 $this->address->isComplete(); // true|false
 
 $this->address->toArray();
@@ -111,12 +125,12 @@ It also stores the place coordinates `latitude` and `longitude`.
 Helpers for preparing a fake address, returned AddressCast
 
 ```php
-\Wame\Address\Utils\AddressHelper::fakeAddress();
-\Wame\Address\Utils\AddressHelper::fakeCompanyAddress();
+\Wame\Address\Utils\FakeAddress::make();
+\Wame\Address\Utils\FakeCompanyAddress::make();
 
-\Wame\Address\Utils\AddressHelper::fakeAddress(['country' => 'SK']);
-\Wame\Address\Utils\AddressHelper::fakeAddress(withName: false);
+\Wame\Address\Utils\FakeAddress::make(['country' => 'SK']);
+\Wame\Address\Utils\FakeAddress::make(withName: false);
 
-\Wame\Address\Utils\AddressHelper::fakeAddress()->toArray();
-\Wame\Address\Utils\AddressHelper::fakeAddress()->toJson();
+\Wame\Address\Utils\FakeAddress::make()->toArray();
+\Wame\Address\Utils\FakeAddress::make()->toJson();
 ```

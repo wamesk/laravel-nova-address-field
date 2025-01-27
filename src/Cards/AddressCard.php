@@ -1,6 +1,6 @@
 <?php
 
-namespace Wame\Address\Cards;
+namespace Wame\LaravelNovaAddressField\Cards;
 
 use InteractionDesignFoundation\HtmlCard\HtmlCard;
 use Wame\LaravelNovaAddressField\Casts\AddressCast;

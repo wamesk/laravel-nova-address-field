@@ -15,5 +15,8 @@
     "tax_id": "DIČ",
     "vat_id": "IČ DPH",
 
-    "phone": "Telefón"
+    "phone": "Telefón",
+
+    "latitude": "Zemepisná šírka",
+    "longitude": "Zemepisná dĺžka"
 }

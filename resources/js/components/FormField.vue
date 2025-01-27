@@ -237,6 +237,34 @@
                         />
                     </div>
                 </div>
+
+                <div v-if="currentField.with_gps" class="gps-row">
+                    <div class="input-wrapper col">
+                        <input
+                            :id="currentField.attribute + '-latitude'"
+                            type="text"
+                            class="w-full form-control form-input form-control-bordered"
+                            :class="errorClasses"
+                            :placeholder="__('latitude')"
+                            v-model="formData.latitude"
+                            :required="currentField.required"
+                            autocomplete="new-address"
+                        />
+                    </div>
+
+                    <div class="input-wrapper col">
+                        <input
+                            :id="currentField.attribute + '-longitude'"
+                            type="text"
+                            class="w-full form-control form-input form-control-bordered"
+                            :class="errorClasses"
+                            :placeholder="__('longitude')"
+                            v-model="formData.longitude"
+                            :required="currentField.required"
+                            autocomplete="new-address"
+                        />
+                    </div>
+                </div>
             </div>
         </template>
     </DefaultField>
