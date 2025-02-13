@@ -22,7 +22,7 @@ class Address extends Field
      */
     public $component = 'address';
 
-    protected $dependentShouldEmitChangesEvent = true;
+    protected ?bool $dependentShouldEmitChangesEvent = true;
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
