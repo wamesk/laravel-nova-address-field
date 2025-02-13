@@ -22,7 +22,7 @@ class Address extends Field
      */
     public $component = 'address';
 
-    protected ?bool $dependentShouldEmitChangesEvent = true;
+    protected $dependentShouldEmitChangesEvent = true;
 
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
@@ -148,7 +148,7 @@ class Address extends Field
         foreach ($list as $item) {
             $country = country($item['iso_3166_1_alpha2']);
             $countryCode = $country->getIsoAlpha2();
-            
+
             $return[$countryCode] = $country->getName() . ' (' . $countryCode . ')';
         }
 
