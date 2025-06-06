@@ -136,7 +136,7 @@ class Address extends Field
     {
         $version = $this->getCountryPackageVersion();
 
-        if (Str::startsWith($version, '2.')) {
+        if (Str::startsWith($version, ['2.', '4.'])) {
             return Country::query()->where(['status' => CountryStatusEnum::ENABLED])->orderBy('title')->pluck('title', 'id')->toArray();
         }
 
