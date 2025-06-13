@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Wame\Address\Casts;
 
@@ -15,19 +15,33 @@ use Wame\Address\Enums\IsCompanyEnum;
 class AddressCast implements Arrayable, Castable
 {
     protected ?string $firstName;
+
     protected ?string $lastName;
+
     protected ?string $street;
+
     protected ?string $city;
+
     protected ?string $zipCode;
+
     protected ?string $country;
+
     protected IsCompanyEnum $isCompany;
+
     protected ?string $companyName;
+
     protected ?string $businessId;
+
     protected ?string $taxId;
+
     protected ?string $vatId;
+
     protected bool $vatPayer = false;
+
     protected ?string $phone;
+
     protected float|string|null $latitude;
+
     protected float|string|null $longitude;
 
     public function __construct(?array $data = [])
@@ -52,8 +66,8 @@ class AddressCast implements Arrayable, Castable
     {
         if (property_exists($this, $name)) {
             return $this->{$name};
-        } elseif (method_exists($this, 'get' . ucfirst($name))) {
-            return $this->{'get' . ucfirst($name)}();
+        } elseif (method_exists($this, 'get'.ucfirst($name))) {
+            return $this->{'get'.ucfirst($name)}();
         }
 
         return null;
@@ -98,24 +112,20 @@ class AddressCast implements Arrayable, Castable
 
     public static function castUsing(array $arguments): CastsAttributes|SerializesCastableAttributes
     {
-        return new class() implements CastsAttributes, SerializesCastableAttributes
+        return new class implements CastsAttributes, SerializesCastableAttributes
         {
             public function get(Model $model, string $key, mixed $value, array $attributes): ?AddressCast
             {
-                if (null === $value || 'null' === $value) {
+                if ($value === null || $value === 'null') {
                     return null;
                 }
 
                 if (is_string($value)) {
-                    if ('"' === $value[0]) {
+                    if ($value[0] === '"') {
                         $value = mb_substr($value, 1, -1);
                     }
 
                     $value = json_decode(stripslashes($value), true);
-                }
-
-                if (!isset($value['company_name']) && !isset($value['first_name']) && !isset($value['last_name'])) {
-                    return null;
                 }
 
                 return new AddressCast($value);
@@ -125,7 +135,7 @@ class AddressCast implements Arrayable, Castable
             {
                 if (is_string($value)) {
                     $value = json_decode($value, true);
-                } elseif (null === $value) {
+                } elseif ($value === null) {
                     return null;
                 } else {
                     $value = $value->toArray();
@@ -154,11 +164,11 @@ class AddressCast implements Arrayable, Castable
 
     public function getName(): ?string
     {
-        if (IsCompanyEnum::YES === $this->isCompany) {
+        if ($this->isCompany === IsCompanyEnum::YES) {
             return $this->companyName;
         }
 
-        return $this->firstName . ' ' . $this->lastName;
+        return $this->firstName.' '.$this->lastName;
     }
 
     public function getFirstName(): ?string
@@ -228,7 +238,7 @@ class AddressCast implements Arrayable, Castable
 
     public function getVatPayer(): bool
     {
-        return '' !== $this->vatId && null !== $this->vatId;
+        return $this->vatId !== '' && $this->vatId !== null;
     }
 
     public function getPhone(): ?string
@@ -249,8 +259,8 @@ class AddressCast implements Arrayable, Castable
     public function isComplete(): bool
     {
         return (bool) (
-            ((IsCompanyEnum::YES === $this->getIsCompany() && $this->companyName)
-            || (IsCompanyEnum::NO === $this->getIsCompany() && $this->firstName && $this->lastName))
+            (($this->getIsCompany() === IsCompanyEnum::YES && $this->companyName)
+            || ($this->getIsCompany() === IsCompanyEnum::NO && $this->firstName && $this->lastName))
             && ($this->street && $this->zipCode && $this->city && $this->country)
         );
     }
@@ -354,5 +364,4 @@ class AddressCast implements Arrayable, Castable
 
         return $this;
     }
-    
 }
