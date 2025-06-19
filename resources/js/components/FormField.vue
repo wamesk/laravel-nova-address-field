@@ -225,13 +225,12 @@
 
                 <div v-if="currentField.with_phone" class="phone-row">
                     <div class="input-wrapper col">
-                        <input
+                        <vue-tel-input
                             :id="currentField.attribute + '-phone'"
-                            type="tel"
+                            v-model="formData.phone"
                             class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
                             :placeholder="__('phone')"
-                            v-model="formData.phone"
                             :required="currentField.required"
                             autocomplete="new-address"
                         />
@@ -245,12 +244,18 @@
 <script>
 import { DependentFormField, HandlesValidationErrors } from 'laravel-nova'
 import { getAddressFromPlace } from '../google-maps'
+import { VueTelInput } from 'vue-tel-input';
+import 'vue3-tel-input/dist/vue3-tel-input.css';
 
 export default {
     mixins: [
         DependentFormField,
         HandlesValidationErrors,
     ],
+
+    components: {
+        VueTelInput
+    },
 
     props: [
         'resourceName',

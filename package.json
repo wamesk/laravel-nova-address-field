@@ -19,6 +19,8 @@
         "vue-loader": "^16.8.3"
     },
     "dependencies": {
-        "@fawmi/vue-google-maps": "*"
+        "@fawmi/vue-google-maps": "*",
+        "vue-tel-input": "^9.3.0",
+        "vue3-tel-input": "^1.0.4"
     }
 }
