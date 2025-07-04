@@ -42,7 +42,7 @@
                         :placeholder="__('company_name')"
                         v-model="formData.company_name"
                         :required="isRequired('company_name')"
-                        autocomplete="new-address"
+                        autocomplete="off"
                     />
                 </div>
 
@@ -56,7 +56,7 @@
                             :placeholder="__('first_name')"
                             v-model="formData.first_name"
                             :required="isRequired('first_name')"
-                            autocomplete="new-address"
+                            autocomplete="off"
                         />
                     </div>
 
@@ -69,7 +69,7 @@
                             :placeholder="__('last_name')"
                             v-model="formData.last_name"
                             :required="isRequired('last_name')"
-                            autocomplete="new-address"
+                            autocomplete="off"
                         />
                     </div>
                 </div>
@@ -77,14 +77,14 @@
                 <div class="input-wrapper">
                     <GMapAutocomplete
                         v-if="currentField.with_address_suggestions && currentField.google_maps_api_key"
-                        :id="currentField.attribute + '-street'"
+                        :id="currentField.attribute + '-drive_line'"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
                         :placeholder="__('address_suggestions')"
                         :value="formData.street"
                         v-model="formData.street"
-                        autocomplete="new-address"
+                        autocomplete="off"
                         :required="isRequired('street')"
                         @place_changed="addressSuggestions"
                         @keydown.enter.prevent
@@ -92,14 +92,14 @@
 
                     <input
                         v-else
-                        :id="currentField.attribute + '-street'"
+                        :id="currentField.attribute + '-drive_line'"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
                         :placeholder="__('street')"
                         v-model="formData.street"
                         :required="isRequired('street')"
-                        autocomplete="new-address"
+                        autocomplete="off"
                     />
                 </div>
 
@@ -113,7 +113,7 @@
                             :placeholder="__('zip_code')"
                             v-model="formData.zip_code"
                             :required="isRequired('zip_code')"
-                            autocomplete="new-address"
+                            autocomplete="off"
                         />
                     </div>
 
@@ -126,7 +126,7 @@
                             :placeholder="__('city')"
                             v-model="formData.city"
                             :required="isRequired('city')"
-                            autocomplete="new-address"
+                            autocomplete="off"
                         />
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                         :class="errorClasses"
                         v-model="formData.country"
                         :required="isRequired('country')"
-                        autocomplete="new-address"
+                        autocomplete="off"
                     >
                         <option
                             disabled
@@ -177,7 +177,7 @@
                                 :class="errorClasses"
                                 :placeholder="__('business_id')"
                                 v-model="formData.business_id"
-                                autocomplete="new-address"
+                                autocomplete="off"
                             />
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                                 :class="errorClasses"
                                 :placeholder="__('tax_id')"
                                 v-model="formData.tax_id"
-                                autocomplete="new-address"
+                                autocomplete="off"
                             />
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                                 :class="errorClasses"
                                 :placeholder="__('vat_id')"
                                 v-model="formData.vat_id"
-                                autocomplete="new-address"
+                                autocomplete="off"
                             />
                         </div>
                     </div>
@@ -232,7 +232,7 @@
                             :class="errorClasses"
                             :placeholder="__('phone')"
                             :required="currentField.required"
-                            autocomplete="new-address"
+                            autocomplete="off"
                         />
                     </div>
                 </div>
