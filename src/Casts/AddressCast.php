@@ -132,11 +132,11 @@ class AddressCast implements Arrayable, Castable
                 }
 
                 // Normalize
-                if (isset($value['zip_code'])) {
+                if (isset($value['zip_code']) && $value['zip_code']) {
                     $value['zip_code'] = str_replace(' ', '', $value['zip_code']);
                 }
 
-                if (isset($value['phone'])) {
+                if (isset($value['phone']) && $value['phone']) {
                     $value['phone'] = str_replace(' ', '', $value['phone']);
                 }
 
@@ -336,7 +336,7 @@ class AddressCast implements Arrayable, Castable
 
     public function setPhone(?string $phone): self
     {
-        $this->phone = str_replace(' ', '', $phone) ?? null;
+        $this->phone = $phone ? str_replace(' ', '', $phone) : null;
 
         return $this;
     }
