@@ -2,7 +2,7 @@
 	"name": "wamesk/laravel-nova-address-field",
 	"description": "Laravel Nova 4 Address field",
 	"type": "library",
-	"version": "4.1.1",
+	"version": "4.1.2",
 	"license": "proprietary",
 	"require": {
         "wamesk/laravel-nova-country": "^1.1|^2.0|^4.0"

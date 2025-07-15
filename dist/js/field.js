@@ -3026,7 +3026,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_vue_tel_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue-tel-input");
   var _component_DefaultField = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DefaultField");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_DefaultField, {
-    field: $props.field,
+    field: _ctx.currentField,
     errors: _ctx.errors,
     "show-help-text": _ctx.showHelpText,
     "full-width-content": _ctx.fullWidthContent
