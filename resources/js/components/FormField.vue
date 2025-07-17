@@ -85,7 +85,7 @@
                         :placeholder="__('address_suggestions')"
                         :value="formData.street"
                         v-model="formData.street"
-                        autocomplete="off"
+                        autocomplete="one-time-code"
                         :required="isRequired('street')"
                         @place_changed="addressSuggestions"
                         @keydown.enter.prevent
@@ -100,7 +100,7 @@
                         :placeholder="__('street')"
                         v-model="formData.street"
                         :required="isRequired('street')"
-                        autocomplete="off"
+                        autocomplete="one-time-code"
                     />
                 </div>
 
