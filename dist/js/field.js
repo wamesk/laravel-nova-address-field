@@ -3089,7 +3089,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         autocomplete: "off"
       }, null, 10 /* CLASS, PROPS */, _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.last_name]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_ctx.currentField.with_address_suggestions && _ctx.currentField.google_maps_api_key ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_GMapAutocomplete, {
         key: 0,
-        id: "addr_drive_line",
+        id: "addr_str_eet",
         type: "text",
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('address_suggestions'),

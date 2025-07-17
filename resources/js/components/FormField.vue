@@ -77,7 +77,7 @@
                 <div class="input-wrapper">
                     <GMapAutocomplete
                         v-if="currentField.with_address_suggestions && currentField.google_maps_api_key"
-                        id="addr_drive_line"
+                        id="addr_str_eet"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
