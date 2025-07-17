@@ -92,7 +92,7 @@
 
                     <input
                         v-else
-                        id="addr_drive_line"
+                        id="addr_str_eet"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
