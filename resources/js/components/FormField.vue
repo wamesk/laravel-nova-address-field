@@ -8,9 +8,9 @@
         <template #field>
             <div class="address-field-group">
                 <div v-if="currentField.with_company && !currentField.only_company" class="radio-wrapper">
-                    <label :for="currentField.attribute + '-personal'">
+                    <label for="addr_personal">
                         <input
-                            :id="currentField.attribute + '-personal'"
+                            id="addr_personal"
                             type="radio"
                             class="checked:border-primary-500"
                             :class="errorClasses"
@@ -20,9 +20,9 @@
                         {{ __('personal') }}
                     </label>
 
-                    <label :for="currentField.attribute + '-company'">
+                    <label for="addr_company">
                         <input
-                            :id="currentField.attribute + '-company'"
+                            id="addr_company"
                             type="radio"
                             class="peer/draft"
                             :class="errorClasses"
@@ -35,7 +35,7 @@
 
                 <div v-if="showCompany && showName" class="input-wrapper">
                     <input
-                        :id="currentField.attribute + '-company_name'"
+                        id="addr_company_name"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
@@ -49,7 +49,7 @@
                 <div v-if="!showCompany && showName" class="name-row">
                     <div class="input-wrapper col">
                         <input
-                            :id="currentField.attribute + '-first_name'"
+                            id="addr_first_name"
                             type="text"
                             class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
@@ -62,7 +62,7 @@
 
                     <div class="input-wrapper col">
                         <input
-                            :id="currentField.attribute + '-last_name'"
+                            id="addr_last_name"
                             type="text"
                             class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
@@ -77,7 +77,7 @@
                 <div class="input-wrapper">
                     <GMapAutocomplete
                         v-if="currentField.with_address_suggestions && currentField.google_maps_api_key"
-                        :id="currentField.attribute + '-drive_line'"
+                        id="addr_drive_line"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
@@ -92,7 +92,7 @@
 
                     <input
                         v-else
-                        :id="currentField.attribute + '-drive_line'"
+                        id="addr_drive_line"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
                         :class="errorClasses"
@@ -106,7 +106,7 @@
                 <div class="row">
                     <div class="input-wrapper col">
                         <input
-                            :id="currentField.attribute + '-zip_code'"
+                            id="addr_z_code"
                             type="text"
                             class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
@@ -119,7 +119,7 @@
 
                     <div class="input-wrapper col">
                         <input
-                            :id="currentField.attribute + '-city'"
+                            id="addr_cit_y"
                             type="text"
                             class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
@@ -133,7 +133,7 @@
 
                 <div class="flex relative w-full component-select-control select-wrapper">
                     <select
-                        :id="currentField.attribute + '-country'"
+                        id="addr_country"
                         class="relative flex items-center form-control form-input form-control-bordered form-select pr-6 form-select-bordered"
                         :class="errorClasses"
                         v-model="formData.country"
@@ -164,14 +164,14 @@
                 <div v-show="showCompany" class="company-data">
                     <div class="row">
                         <div class="col">
-                            <label :for="currentField.attribute + '-business_id'">
+                            <label for="addr_business_id">
                                 {{ __('business_id') }}
                             </label>
                         </div>
 
                         <div class="input-wrapper col">
                             <input
-                                :id="currentField.attribute + '-business_id'"
+                                id="addr_business_id"
                                 type="text"
                                 class="w-full form-control form-input form-control-bordered"
                                 :class="errorClasses"
@@ -184,14 +184,14 @@
 
                     <div class="row">
                         <div class="col">
-                            <label :for="currentField.attribute + '-tax_id'">
+                            <label for="addr_tax_id">
                                 {{ __('tax_id') }}
                             </label>
                         </div>
 
                         <div class="input-wrapper col">
                             <input
-                                :id="currentField.attribute + '-tax_id'"
+                                id="addr_tax_id"
                                 type="text"
                                 class="w-full form-control form-input form-control-bordered"
                                 :class="errorClasses"
@@ -204,14 +204,14 @@
 
                     <div class="row">
                         <div class="col">
-                            <label :for="currentField.attribute + '-vat_id'">
+                            <label for="addr_vat_id">
                                 {{ __('vat_id') }}
                             </label>
                         </div>
 
                         <div class="input-wrapper col">
                             <input
-                                :id="currentField.attribute + '-vat_id'"
+                                id="addr_vat_id"
                                 type="text"
                                 class="w-full form-control form-input form-control-bordered"
                                 :class="errorClasses"
@@ -226,7 +226,7 @@
                 <div v-if="currentField.with_phone" class="phone-row">
                     <div class="input-wrapper col">
                         <vue-tel-input
-                            :id="currentField.attribute + '-phone'"
+                            id="addr_phone"
                             v-model="formData.phone"
                             class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
@@ -303,6 +303,8 @@ export default {
         * Set the initial, internal value for the field.
         */
         setInitialValue() {
+            console.log('this.currentField', this.currentField)
+
             let value = this.currentField.value || ''
 
             if (value !== '[]') {
