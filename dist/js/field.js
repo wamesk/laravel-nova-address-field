@@ -3104,7 +3104,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onKeydown: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]), ["enter"]))
       }, null, 8 /* PROPS */, ["class", "placeholder", "value", "modelValue", "required", "onPlace_changed"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
         key: 1,
-        id: "addr_drive_line",
+        id: "addr_str_eet",
         type: "text",
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-full form-control form-input form-control-bordered", _ctx.errorClasses]),
         placeholder: _ctx.__('street'),
