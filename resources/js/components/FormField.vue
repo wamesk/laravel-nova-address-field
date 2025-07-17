@@ -6,7 +6,8 @@
         :full-width-content="fullWidthContent"
     >
         <template #field>
-            <div class="address-field-group">
+            <form autocomplete="off">
+              <div class="address-field-group">
                 <div v-if="currentField.with_company && !currentField.only_company" class="radio-wrapper">
                     <label for="addr_personal">
                         <input
@@ -237,6 +238,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </template>
     </DefaultField>
 </template>
