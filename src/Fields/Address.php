@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Wame\Address\Fields;
 
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\SupportsDependentFields;
@@ -25,6 +26,11 @@ class Address extends Field
 
     protected $dependentShouldEmitChangesEvent = true;
 
+    private string $countryListCacheKey = 'address-field-countries';
+
+    /**
+     * @throws \JsonException
+     */
     public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
         parent::__construct($name, $attribute, $resolveCallback);
@@ -43,9 +49,41 @@ class Address extends Field
         ]);
 
         if (!isset($this->meta['country_list'])) {
-            $countryList = $this->getCountryList();
-            $this->withMeta(['country_list' => $countryList]);
+            $this->withMeta(['country_list' => $this->getCountryList()]);
         }
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    private function getCountryList(): ?array
+    {
+        $countries = Cache::get($this->countryListCacheKey);
+
+        if (isset($countries)) {
+            return $countries;
+        }
+
+        $version = $this->getCountryPackageVersion();
+
+        if (Str::startsWith($version, ['2.', '4.'])) {
+            $countries = Country::query()->where(['status' => CountryStatusEnum::ENABLED])->orderBy('title')->pluck('title', 'id')->toArray();
+
+            $this->cacheCountryList($countries);
+
+            return $countries;
+        }
+
+        $countries = Country::query()->where(['status' => Country::STATUS_ENABLED])->orderBy('title')->pluck('title', 'code')->toArray();
+
+        $this->cacheCountryList($countries);
+
+        return $countries;
+    }
+
+    private function cacheCountryList(array $countries): void
+    {
+        Cache::put($this->countryListCacheKey, $countries, now()->addSeconds(5));
     }
 
     public function jsonSerialize(): array
@@ -126,21 +164,6 @@ class Address extends Field
     public function withPhone(): Address
     {
         return $this->withMeta(['with_phone' => true]);
-    }
-
-    /**
-     * @return array|mixed|mixed[]
-     * @throws \JsonException
-     */
-    private function getCountryList(): mixed
-    {
-        $version = $this->getCountryPackageVersion();
-
-        if (Str::startsWith($version, ['2.', '4.'])) {
-            return Country::query()->where(['status' => CountryStatusEnum::ENABLED])->orderBy('title')->pluck('title', 'id')->toArray();
-        }
-
-        return Country::query()->where(['status' => Country::STATUS_ENABLED])->orderBy('title')->pluck('title', 'code')->toArray();
     }
 
     /**
