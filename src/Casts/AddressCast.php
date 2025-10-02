@@ -125,7 +125,7 @@ class AddressCast implements Arrayable, Castable
                         $value = mb_substr($value, 1, -1);
                     }
 
-                    $value = json_decode(stripslashes($value), true);
+                    $value = json_decode($value, true, 512, JSON_THROW_ON_ERROR);
                 }
 
                 return new AddressCast($value);
@@ -134,7 +134,7 @@ class AddressCast implements Arrayable, Castable
             public function set(Model $model, string $key, mixed $value, array $attributes): ?array
             {
                 if (is_string($value)) {
-                    $value = json_decode($value, true);
+                    $value = json_decode($value, true, 512, JSON_THROW_ON_ERROR);
                 } elseif ($value === null) {
                     return null;
                 } else {
