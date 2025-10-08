@@ -2,7 +2,7 @@
 	"name": "wamesk/laravel-nova-address-field",
 	"description": "Laravel Nova Address field",
 	"type": "library",
-	"version": "5.0.2",
+	"version": "5.0.3",
 	"license": "proprietary",
 	"require": {
 		"interaction-design-foundation/nova-html-card": "^3.4",

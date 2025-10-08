@@ -107,11 +107,8 @@ class AddressCast implements Arrayable, Castable
                 }
 
                 if (is_string($value)) {
-                    if ('"' === $value[0]) {
-                        $value = mb_substr($value, 1, -1);
-                    }
-
-                    $value = json_decode(stripslashes($value), true);
+                    $decoded = json_decode($value, true);
+                    $value = json_last_error() === JSON_ERROR_NONE ? $decoded : $value;
                 }
 
                 if (!isset($value['company_name']) && !isset($value['first_name']) && !isset($value['last_name'])) {
@@ -250,7 +247,7 @@ class AddressCast implements Arrayable, Castable
     {
         return (bool) (
             ((IsCompanyEnum::YES === $this->getIsCompany() && $this->companyName)
-            || (IsCompanyEnum::NO === $this->getIsCompany() && $this->firstName && $this->lastName))
+                || (IsCompanyEnum::NO === $this->getIsCompany() && $this->firstName && $this->lastName))
             && ($this->street && $this->zipCode && $this->city && $this->country)
         );
     }
@@ -354,5 +351,5 @@ class AddressCast implements Arrayable, Castable
 
         return $this;
     }
-    
+
 }
