@@ -1,8 +1,9 @@
 <template>
-    <div v-if="list" class="list">
-        <div v-for="item in address" class="item">
-            <div v-if="address.company === '1'">{{ address.company_name }}</div>
+    <div v-if="list && Array.isArray(address)" class="list">
+        <div v-for="(item, idx) in address" :key="idx" class="item">
+            <div v-if="item.company === '1'">{{ item.company_name }}</div>
             <div v-else>{{ item.first_name }} {{ item.last_name }}</div>
+
             {{ item.street }}<br>
             {{ item.zip_code }} {{ item.city }}<br>
             {{ country(item.country) }}
@@ -19,6 +20,7 @@
     <div v-else-if="address">
         <div v-if="address.company === '1'">{{ address.company_name }}</div>
         <div v-else>{{ address.first_name }} {{ address.last_name }}</div>
+
         {{ address.street }}<br>
         {{ address.zip_code }} {{ address.city }}<br>
         {{ country(address.country) }}
@@ -39,43 +41,95 @@ import { Localization } from 'laravel-nova'
 
 export default {
     mixins: [Localization],
-
     props: ['resourceName', 'field'],
-
     data() {
         return {
             list: false,
             address: null
         }
     },
-
     mounted() {
         this.prepare()
     },
-
     methods: {
         prepare() {
-            let address = this.field.value
+            let raw = this.field?.value
 
-            // FIX for whitecube/nova-flexible-content
-            if (address.length && !address.startsWith('{')) {
-                let list = []
-
-                JSON.parse(address).forEach(function (item) {
-                    list.push(JSON.parse('{' + item.attributes.address + '}'))
-                })
-
-                address = list
-                this.list = true
-            } else if (address.startsWith('{')) {
-                address = JSON.parse(address)
+            if (raw === null || raw === undefined || raw === '') {
+                this.address = null
+                this.list = false
+                return
             }
 
-            this.address = address
+            if (Array.isArray(raw)) {
+                this.address = raw
+                this.list = true
+                return
+            }
+            if (typeof raw === 'object') {
+                this.address = raw
+                this.list = false
+                return
+            }
+
+            if (typeof raw === 'string') {
+                const s = raw.trim()
+
+                if (s.startsWith('{') || s.startsWith('[')) {
+                    try {
+                        const parsed = JSON.parse(s)
+                        if (Array.isArray(parsed)) {
+                            this.address = parsed
+                            this.list = true
+                        } else if (parsed && typeof parsed === 'object') {
+                            this.address = parsed
+                            this.list = false
+                        } else {
+                            this.address = null
+                            this.list = false
+                        }
+                        return
+                    } catch (e) {
+
+                    }
+                }
+
+                try {
+                    const outer = JSON.parse(s)
+                    if (Array.isArray(outer)) {
+                        const list = outer.map((it) => {
+                            let a = it?.attributes?.address
+                            if (!a) return null
+
+                            if (typeof a === 'object') return a
+
+                            if (typeof a === 'string') {
+                                const aa = a.trim()
+                                if (aa.startsWith('{') || aa.startsWith('[')) {
+                                    try { return JSON.parse(aa) } catch (_) {}
+                                }
+                                try { return JSON.parse('{' + aa + '}') } catch (_) {}
+                            }
+                            return null
+                        }).filter(Boolean)
+
+                        if (list.length) {
+                            this.address = list
+                            this.list = true
+                            return
+                        }
+                    }
+                } catch (_) {
+
+                }
+            }
+
+            this.address = null
+            this.list = false
         },
 
-        country(countryCode) {
-            return this.field.country_list[countryCode] ?? countryCode
+        country(code) {
+            return this.field.country_list?.[code] ?? code
         }
     }
 }

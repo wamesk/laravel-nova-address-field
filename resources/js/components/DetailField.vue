@@ -6,10 +6,10 @@
             </h4>
         </div>
 
-        <div class="md:w-3/4 md:py-3 break-all lg:break-words">
-            <div v-if="list" class="list">
-                <div v-for="item in address" class="item">
-                    <div v-if="address.company === '1'">{{ address.company_name }}</div>
+        <div class="md:w-3/4 md:py-3 break-words">
+            <div v-if="list && Array.isArray(address)" class="list">
+                <div v-for="(item, idx) in address" :key="idx" class="item">
+                    <div v-if="item.company === '1'">{{ item.company_name }}</div>
                     <div v-else>{{ item.first_name }} {{ item.last_name }}</div>
                     {{ item.street }}<br>
                     {{ item.zip_code }} {{ item.city }}<br>
@@ -47,51 +47,101 @@
 <script>
 export default {
     props: ['index', 'resource', 'resourceName', 'resourceId', 'field'],
-
     data() {
         return {
-            address: [],
-            list: false
+            address: null,
+            list: false,
         }
     },
-
     mounted() {
         this.prepare()
     },
-
     methods: {
         prepare() {
-            const address = this.field.value
+            let raw = this.field?.value
 
-            if (address !== null) {
-                if (typeof address === 'object') {
-                const list = []
-
-                address.map(function (item) {
-                    list.push(JSON.parse(item.fields.address))
-                })
-
-                this.address = list
-                    this.list = true
-                } else if (address.startsWith('{')) {
-                    this.address = JSON.parse(address)
-                }
+            // 1) nič tu nie je
+            if (raw === null || raw === undefined || raw === '') {
+                this.address = null
+                this.list = false
+                return
             }
+
+            // 2) už je to pole/objekt (ideálne)
+            if (Array.isArray(raw)) {
+                this.address = raw
+                this.list = true
+                return
+            }
+            if (typeof raw === 'object') {
+                this.address = raw
+                this.list = false
+                return
+            }
+
+            // 3) prišiel string → skús parse
+            if (typeof raw === 'string') {
+                const s = raw.trim()
+
+                // a) štandardný JSON objekt/array
+                if (s.startsWith('{') || s.startsWith('[')) {
+                    try {
+                        const parsed = JSON.parse(s)
+                        if (Array.isArray(parsed)) {
+                            this.address = parsed
+                            this.list = true
+                        } else if (parsed && typeof parsed === 'object') {
+                            this.address = parsed
+                            this.list = false
+                        } else {
+                            this.address = null
+                            this.list = false
+                        }
+                        return
+                    } catch (_) { /* padni na b) */ }
+                }
+
+                // b) whitecube/nova-flexible-content – array blokov, každá položka má fields.address (string alebo objekt)
+                try {
+                    const outer = JSON.parse(s)
+                    if (Array.isArray(outer)) {
+                        const list = outer.map(it => {
+                            let a = it?.fields?.address
+                            if (!a) return null
+                            if (typeof a === 'object') return a
+                            if (typeof a === 'string') {
+                                const t = a.trim()
+                                if (t.startsWith('{') || t.startsWith('[')) {
+                                    try { return JSON.parse(t) } catch (_) {}
+                                }
+                                // fallback: niektoré flexibilné uloženia posielajú bez {}
+                                try { return JSON.parse('{' + t + '}') } catch (_) {}
+                            }
+                            return null
+                        }).filter(Boolean)
+
+                        if (list.length) {
+                            this.address = list
+                            this.list = true
+                            return
+                        }
+                    }
+                } catch (_) { /* nič */ }
+            }
+
+            // default
+            this.address = null
+            this.list = false
         },
 
-        country(countryCode) {
-            return this.field.country_list[countryCode] ?? countryCode
+        country(code) {
+            return this.field.country_list?.[code] ?? code
         }
     }
 }
 </script>
 
 <style>
-    .item {
-        margin-top: 10px;
-    }
-
-    .item:first-child {
-        margin-top: 0;
-    }
+.item { margin-top: 10px; }
+.item:first-child { margin-top: 0; }
 </style>

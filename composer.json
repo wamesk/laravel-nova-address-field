@@ -2,11 +2,11 @@
 	"name": "wamesk/laravel-nova-address-field",
 	"description": "Laravel Nova Address field",
 	"type": "library",
-	"version": "5.0.3",
+	"version": "5.0.4",
 	"license": "proprietary",
 	"require": {
 		"interaction-design-foundation/nova-html-card": "^3.4",
-		"laravel/nova": "^4.0|^5.0",
+		"laravel/nova": "^5.0",
 		"rinvex/countries": "^9.0"
 	},
 	"autoload": {

@@ -323,79 +323,124 @@ export default {
 
     methods: {
         /**
-        * Set the initial, internal value for the field.
-        */
+         * Set the initial, internal value for the field.
+         */
         setInitialValue() {
-            let value = this.currentField.value || ''
+            let raw = this.currentField?.value
 
-            if (value !== '[]') {
-                if (typeof value === 'string' || value instanceof String) {
-                    // FIX for whitecube/nova-flexible-content
-                    if (value.charAt(0) !== '{') value = '{' + value + '}'
-
-                    value = JSON.parse(value)
-                }
-
-                this.formData.first_name = value.first_name ?? ''
-                this.formData.last_name = value.last_name ?? ''
-                this.formData.street = value.street ?? ''
-                this.formData.zip_code = value.zip_code ?? ''
-                this.formData.city = value.city ?? ''
-                this.formData.country = value.country ?? ''
-                this.formData.company = value.company ?? this.currentField.default_company
-                this.formData.company_name = value.company_name ?? ''
-                this.formData.business_id = value.business_id ?? ''
-                this.formData.tax_id = value.tax_id ?? ''
-                this.formData.vat_id = value.vat_id ?? ''
-                this.formData.phone = value.phone ?? ''
-                this.formData.latitude = value.latitude ?? ''
-                this.formData.longitude = value.longitude ?? ''
+            // nič → defaulty
+            if (raw === null || raw === undefined || raw === '' || raw === '[]') {
+                this.value = null
+                return
             }
+
+            // 1) Už je to objekt
+            if (typeof raw === 'object' && !Array.isArray(raw)) {
+                this.applyValue(raw)
+                return
+            }
+
+            // 2) Flexible-content: môže prísť pole blokov s fields.address
+            if (Array.isArray(raw)) {
+                const first = raw.find(it => it?.fields?.address)
+                if (first) {
+                    let a = first.fields.address
+                    if (typeof a === 'string') {
+                        try { a = JSON.parse(a) } catch (_) {}
+                    }
+                    if (a && typeof a === 'object') {
+                        this.applyValue(a)
+                        return
+                    }
+                }
+                // žiadny použiteľný address
+                this.value = null
+                return
+            }
+
+            // 3) Je to string → skús JSON.parse
+            if (typeof raw === 'string') {
+                const s = raw.trim()
+                if (s) {
+                    try {
+                        const parsed = JSON.parse(
+                            // legacy “kvázi JSON” z flexible: bez {}
+                            (s.startsWith('{') || s.startsWith('[')) ? s : '{' + s + '}'
+                        )
+                        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+                            this.applyValue(parsed)
+                            return
+                        }
+                        // flexible-content outer array?
+                        if (Array.isArray(parsed)) {
+                            const first = parsed.find(it => it?.fields?.address)
+                            if (first) {
+                                let a = first.fields.address
+                                if (typeof a === 'string') {
+                                    try { a = JSON.parse(a) } catch (_) {}
+                                }
+                                if (a && typeof a === 'object') {
+                                    this.applyValue(a)
+                                    return
+                                }
+                            }
+                        }
+                    } catch (_) {
+                        // nechaj spadnúť na default
+                    }
+                }
+            }
+
+            this.value = null
+        },
+
+        applyValue(value) {
+            this.formData.first_name   = value.first_name   ?? ''
+            this.formData.last_name    = value.last_name    ?? ''
+            this.formData.street       = value.street       ?? ''
+            this.formData.zip_code     = value.zip_code     ?? ''
+            this.formData.city         = value.city         ?? ''
+            this.formData.country      = value.country      ?? ''
+            this.formData.company      = (value.company ?? this.currentField.default_company ?? '0').toString()
+            this.formData.company_name = value.company_name ?? ''
+            this.formData.business_id  = value.business_id  ?? ''
+            this.formData.tax_id       = value.tax_id       ?? ''
+            this.formData.vat_id       = value.vat_id       ?? ''
+            this.formData.phone        = value.phone        ?? ''
+            this.formData.latitude     = value.latitude     ?? ''
+            this.formData.longitude    = value.longitude    ?? ''
 
             this.value = value
         },
 
-
         /**
-        * Fill the given FormData object with the field's internal value.
-        */
+         * Fill the given FormData object with the field's internal value.
+         */
         fill(formData) {
-            this.value = JSON.stringify(this.formData)
-
-            // FIX for whitecube/nova-flexible-content
-            let flexibleContent = document.getElementById(this.fieldAttribute.split('__')[0])?.classList.contains('component-form-nova-flexible-content-group')
-            if (flexibleContent) this.value = this.value.slice(1, -1)
-
-            formData.append(this.currentField.attribute, this.value || '')
+            // Pošli čistý JSON – bez rezania zátvoriek pre flexible.
+            // Backend cast.set() si poradí aj s JSON stringom.
+            const payload = JSON.stringify(this.formData)
+            formData.append(this.currentField.attribute, payload)
         },
 
         addressSuggestions(place) {
             let address = getAddressFromPlace(place)
-
-            this.formData.street = address.street
+            this.formData.street   = address.street
             this.formData.zip_code = address.zipCode
-            this.formData.city = address.city
-            this.formData.country = address.country
+            this.formData.city     = address.city
+            this.formData.country  = address.country
             this.formData.latitude = address.latitude
-            this.formData.longitude = address.longitude
+            this.formData.longitude= address.longitude
         },
 
         isRequired(name) {
-            if (!this.currentField.required) {
-                return false
-            }
-
-            const defaultFields = ['street', 'zip_code', 'city', 'country']
-            const companyFields = ['company_name']
-            const personalFields = ['first_name', 'last_name']
-
-            if (defaultFields.includes(name)) {
-                return true
-            } else if ((this.formData.company === '0' && personalFields.includes(name)) ||
-                (this.formData.company === '1' && companyFields.includes(name))) {
-                return true
-            }
-
+            if (!this.currentField.required) return false
+            const base = ['street','zip_code','city','country']
+            const comp = ['company_name']
+            const pers = ['first_name','last_name']
+            if (base.includes(name)) return true
+            if (this.formData.company === '0' && pers.includes(name)) return true
+            if (this.formData.company === '1' && comp.includes(name)) return true
             return false
         }
     },
