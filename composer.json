@@ -6,7 +6,7 @@
 	"license": "proprietary",
 	"require": {
 		"interaction-design-foundation/nova-html-card": "^3.4",
-		"laravel/nova": "^5.0",
+		"laravel/nova": "^4.0|^5.0",
 		"rinvex/countries": "^9.0"
 	},
 	"autoload": {

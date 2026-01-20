@@ -62,11 +62,17 @@ export default {
             }
 
             if (Array.isArray(raw)) {
-                this.address = raw
-                this.list = true
+                this.address = raw.length ? raw : null
+                this.list = raw.length > 0
                 return
             }
             if (typeof raw === 'object') {
+                // Check for empty object
+                if (Object.keys(raw).length === 0) {
+                    this.address = null
+                    this.list = false
+                    return
+                }
                 this.address = raw
                 this.list = false
                 return
@@ -74,6 +80,13 @@ export default {
 
             if (typeof raw === 'string') {
                 const s = raw.trim()
+
+                // Handle empty or "null" strings
+                if (!s || s === 'null' || s === '[]' || s === '{}') {
+                    this.address = null
+                    this.list = false
+                    return
+                }
 
                 if (s.startsWith('{') || s.startsWith('[')) {
                     try {
