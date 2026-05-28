@@ -46,6 +46,7 @@ class Address extends Field
             'with_company_autocomplete' => true,
             'with_name' => true,
             'with_phone' => false,
+            'phone_default_country' => null,
         ]);
 
         if (!isset($this->meta['country_list'])) {
@@ -161,9 +162,9 @@ class Address extends Field
     /**
      * Show phone input
      */
-    public function withPhone(): Address
+    public function withPhone(string $defaultCountry = 'SK'): Address
     {
-        return $this->withMeta(['with_phone' => true]);
+        return $this->withMeta(['with_phone' => true, 'phone_default_country' => $defaultCountry]);
     }
 
     /**

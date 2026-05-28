@@ -32,6 +32,7 @@ Address::make(__('customer.field.address'), 'address')
 | `withoutAddressSuggestions()`       | Without address suggestions if set Google Maps API key |
 | `defaultShowCompany()`              | Show default company tab                               |
 | `withoutName()`                     | Without personal user name                             |
+| `withPhone(string $defaultCountry = 'SK')` | Show phone input with optional default country dial code (ISO 3166-1 alpha-2) |
 
 ### Cast
 Setting casts in model

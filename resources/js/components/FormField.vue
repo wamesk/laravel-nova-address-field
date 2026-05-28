@@ -231,9 +231,9 @@
                             v-model="formData.phone"
                             class="w-full form-control form-input form-control-bordered"
                             :class="errorClasses"
-                            :placeholder="__('phone')"
+                            :inputOptions="{ placeholder: __('phone'), autocomplete: 'off' }"
                             :required="currentField.required"
-                            autocomplete="off"
+                            :defaultCountry="currentField.phone_default_country"
                         />
                     </div>
                 </div>
