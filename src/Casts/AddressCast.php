@@ -235,12 +235,14 @@ class AddressCast implements Arrayable, Castable
 
     public function getLatitude(): ?string
     {
-        return $this->latitude;
+        // $latitude is declared float|string|null, but the return type is ?string —
+        // cast so a float-typed value does not violate the contract (TypeError).
+        return $this->latitude !== null ? (string) $this->latitude : null;
     }
 
     public function getLongitude(): ?string
     {
-        return $this->longitude;
+        return $this->longitude !== null ? (string) $this->longitude : null;
     }
 
     public function isComplete(): bool
