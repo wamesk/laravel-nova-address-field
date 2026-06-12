@@ -305,7 +305,17 @@ export default {
         * Set the initial, internal value for the field.
         */
         setInitialValue() {
-            console.log('this.currentField', this.currentField)
+            const injected = this.currentField.inject_values
+
+            // During a dependsOn sync, only patch the injected keys — preserve everything else the user typed
+            if (this.syncedField !== null && injected && Object.keys(injected).length > 0) {
+                Object.entries(injected).forEach(([key, val]) => {
+                    if (key in this.formData) {
+                        this.formData[key] = val ?? ''
+                    }
+                })
+                return
+            }
 
             let value = this.currentField.value || ''
 
@@ -352,6 +362,8 @@ export default {
 
         addressSuggestions(place) {
             let address = getAddressFromPlace(place)
+            console.log('place', place)
+            console.log('address', address)
 
             this.formData.street = address.street
             this.formData.zip_code = address.zipCode
@@ -359,6 +371,17 @@ export default {
             this.formData.country = address.country
             this.formData.latitude = address.latitude
             this.formData.longitude = address.longitude
+        },
+
+        onSyncedField() {
+            const injected = this.currentField.inject_values
+            if (!injected || !Object.keys(injected).length) return
+
+            Object.entries(injected).forEach(([key, value]) => {
+                if (key in this.formData) {
+                    this.formData[key] = value ?? ''
+                }
+            })
         },
 
         isRequired(name) {

@@ -99,7 +99,27 @@ class Address extends Field
             $return['value'] = [];
         }
 
+        if (!empty($this->meta['inject_values'])) {
+            $existing = is_string($return['value']) && $return['value'] !== ''
+                ? (json_decode($return['value'], true) ?? [])
+                : (array) $return['value'];
+
+            $return['value'] = json_encode(array_merge($existing, $this->meta['inject_values']));
+        }
+
         return $return;
+    }
+
+    /**
+     * Merge specific keys into the field value without overwriting the entire object.
+     * Keys use the JSON snake_case format (e.g. street, city, zip_code, country).
+     * Safe to call multiple times (e.g. in dependsOn callbacks) — values are merged, not replaced.
+     */
+    public function injectValues(array $values): self
+    {
+        $existing = $this->meta['inject_values'] ?? [];
+
+        return $this->withMeta(['inject_values' => array_merge($existing, $values)]);
     }
 
     /**

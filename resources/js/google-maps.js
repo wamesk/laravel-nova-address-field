@@ -1,6 +1,6 @@
 function getAddressFromPlace(place) {
     let parameters = {
-        street_number: ['street_number'],
+        street_number: ['street_number', 'premise'],
         zipCode: ['postal_code'],
         street: ['street_address', 'route'],
         region: [
@@ -46,7 +46,11 @@ function getAddressFromPlace(place) {
         }
     });
 
-    address.street += ' ' + address.street_number;
+    if (address.street === '' && address.street_number !== '') {
+        address.street = address.city;
+    }
+
+    address.street = (address.street + ' ' + address.street_number).trim();
     delete address.street_number;
 
     return address;
