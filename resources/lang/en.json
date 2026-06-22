@@ -1,0 +1,24 @@
+{
+    "personal": "Individual",
+    "company": "Company",
+
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "address_suggestions": "Start typing address...",
+    "street": "Street and number",
+    "zip_code": "ZIP code",
+    "city": "City",
+    "country": "Select country",
+
+    "company_name": "Company name",
+    "business_id": "Business ID",
+    "tax_id": "Tax ID",
+    "vat_id": "VAT ID",
+
+    "phone": "Phone",
+
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+
+    "region": "Region"
+}

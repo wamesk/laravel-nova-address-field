@@ -16,7 +16,8 @@
         "laravel-mix": "^6.0.41",
         "lodash": "^4.17.21",
         "postcss": "^8.3.11",
-        "vue-loader": "^16.8.3"
+        "vue-loader": "^16.8.3",
+        "webpack": "^5.74.0"
     },
     "dependencies": {
         "@fawmi/vue-google-maps": "*"

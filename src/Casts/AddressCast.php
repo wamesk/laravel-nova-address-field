@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Wame\LaravelNovaAddressField\Casts;
 
@@ -15,20 +15,36 @@ use Wame\LaravelNovaAddressField\Enums\IsCompanyEnum;
 class AddressCast implements Arrayable, Castable
 {
     protected ?string $firstName;
+
     protected ?string $lastName;
+
     protected ?string $street;
+
     protected ?string $city;
+
     protected ?string $zipCode;
+
     protected ?string $country;
+
     protected IsCompanyEnum $isCompany;
+
     protected ?string $companyName;
+
     protected ?string $businessId;
+
     protected ?string $taxId;
+
     protected ?string $vatId;
+
     protected bool $vatPayer = false;
+
     protected ?string $phone;
+
     protected float|string|null $latitude;
+
     protected float|string|null $longitude;
+
+    protected ?string $region;
 
     public function __construct(?array $data = [])
     {
@@ -46,14 +62,15 @@ class AddressCast implements Arrayable, Castable
         $this->phone = $data['phone'] ?? '';
         $this->latitude = $data['latitude'] ?? '';
         $this->longitude = $data['longitude'] ?? '';
+        $this->region = $data['region'] ?? null;
     }
 
     public function __get(string $name): mixed
     {
         if (property_exists($this, $name)) {
             return $this->{$name};
-        } elseif (method_exists($this, 'get' . ucfirst($name))) {
-            return $this->{'get' . ucfirst($name)}();
+        } elseif (method_exists($this, 'get'.ucfirst($name))) {
+            return $this->{'get'.ucfirst($name)}();
         }
 
         return null;
@@ -93,16 +110,17 @@ class AddressCast implements Arrayable, Castable
             'phone' => $this->phone,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
+            'region' => $this->region,
         ];
     }
 
     public static function castUsing(array $arguments): CastsAttributes|SerializesCastableAttributes
     {
-        return new class() implements CastsAttributes, SerializesCastableAttributes
+        return new class implements CastsAttributes, SerializesCastableAttributes
         {
             public function get(Model $model, string $key, mixed $value, array $attributes): ?AddressCast
             {
-                if (null === $value || 'null' === $value) {
+                if ($value === null || $value === 'null') {
                     return null;
                 }
 
@@ -111,7 +129,7 @@ class AddressCast implements Arrayable, Castable
                     $value = json_last_error() === JSON_ERROR_NONE ? $decoded : $value;
                 }
 
-                if (!isset($value['company_name']) && !isset($value['first_name']) && !isset($value['last_name'])) {
+                if (! isset($value['company_name']) && ! isset($value['first_name']) && ! isset($value['last_name'])) {
                     return null;
                 }
 
@@ -122,9 +140,9 @@ class AddressCast implements Arrayable, Castable
             {
                 if (is_string($value)) {
                     $value = json_decode($value, true);
-                } elseif (null === $value) {
+                } elseif ($value === null) {
                     return null;
-                } else {
+                } elseif (! is_array($value)) {
                     $value = $value->toArray();
                 }
 
@@ -151,11 +169,11 @@ class AddressCast implements Arrayable, Castable
 
     public function getName(): ?string
     {
-        if (IsCompanyEnum::YES === $this->isCompany) {
+        if ($this->isCompany === IsCompanyEnum::YES) {
             return $this->companyName;
         }
 
-        return $this->firstName . ' ' . $this->lastName;
+        return $this->firstName.' '.$this->lastName;
     }
 
     public function getFirstName(): ?string
@@ -225,7 +243,7 @@ class AddressCast implements Arrayable, Castable
 
     public function getVatPayer(): bool
     {
-        return '' !== $this->vatId && null !== $this->vatId;
+        return $this->vatId !== '' && $this->vatId !== null;
     }
 
     public function getPhone(): ?string
@@ -235,7 +253,7 @@ class AddressCast implements Arrayable, Castable
 
     public function getLatitude(): ?string
     {
-        // $latitude is declared float|string|null, but the return type is ?string —
+        // $latitude is declared float|string|null, but the return type is ?string
         // cast so a float-typed value does not violate the contract (TypeError).
         return $this->latitude !== null ? (string) $this->latitude : null;
     }
@@ -245,11 +263,16 @@ class AddressCast implements Arrayable, Castable
         return $this->longitude !== null ? (string) $this->longitude : null;
     }
 
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
     public function isComplete(): bool
     {
         return (bool) (
-            ((IsCompanyEnum::YES === $this->getIsCompany() && $this->companyName)
-                || (IsCompanyEnum::NO === $this->getIsCompany() && $this->firstName && $this->lastName))
+            (($this->getIsCompany() === IsCompanyEnum::YES && $this->companyName)
+                || ($this->getIsCompany() === IsCompanyEnum::NO && $this->firstName && $this->lastName))
             && ($this->street && $this->zipCode && $this->city && $this->country)
         );
     }
@@ -354,4 +377,10 @@ class AddressCast implements Arrayable, Castable
         return $this;
     }
 
+    public function setRegion(?string $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
 }

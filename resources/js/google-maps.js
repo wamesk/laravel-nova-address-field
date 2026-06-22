@@ -34,7 +34,7 @@ function getAddressFromPlace(place) {
 
     place.address_components.forEach(item => {
         for (let parameter in parameters) {
-            if (parameters[parameter].indexOf(item.types[0]) !== -1) {
+            if (item.types.some(type => parameters[parameter].indexOf(type) !== -1)) {
                 if (parameter === 'country') {
                     address[parameter] = item.short_name;
                 } else {

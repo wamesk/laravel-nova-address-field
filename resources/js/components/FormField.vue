@@ -238,6 +238,20 @@
                     </div>
                 </div>
 
+                <div v-if="currentField.with_region" class="region-row">
+                    <div class="input-wrapper col">
+                        <input
+                            :id="currentField.attribute + '-region'"
+                            type="text"
+                            class="w-full form-control form-input form-control-bordered"
+                            :class="errorClasses"
+                            :placeholder="__('region')"
+                            v-model="formData.region"
+                            autocomplete="new-address"
+                        />
+                    </div>
+                </div>
+
                 <div v-if="currentField.with_gps" class="gps-row">
                     <div class="input-wrapper col">
                         <input
@@ -303,6 +317,7 @@ export default {
                 phone: '',
                 latitude: '',
                 longitude: '',
+                region: '',
             }
         }
     },
@@ -409,6 +424,7 @@ export default {
             this.formData.phone        = value.phone        ?? ''
             this.formData.latitude     = value.latitude     ?? ''
             this.formData.longitude    = value.longitude    ?? ''
+            this.formData.region      = value.region      ?? ''
 
             this.value = value
         },
@@ -420,10 +436,11 @@ export default {
             // Pošli čistý JSON – bez rezania zátvoriek pre flexible.
             // Backend cast.set() si poradí aj s JSON stringom.
             const payload = JSON.stringify(this.formData)
-            formData.append(this.currentField.attribute, payload)
+            formData.append(this.field.attribute, payload)
         },
 
         addressSuggestions(place) {
+            console.log('[Address] place:', place)
             let address = getAddressFromPlace(place)
             this.formData.street   = address.street
             this.formData.zip_code = address.zipCode
@@ -431,6 +448,7 @@ export default {
             this.formData.country  = address.country
             this.formData.latitude = address.latitude
             this.formData.longitude= address.longitude
+            this.formData.region = address.region || ''
         },
 
         isRequired(name) {

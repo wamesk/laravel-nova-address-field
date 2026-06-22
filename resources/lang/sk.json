@@ -18,5 +18,7 @@
     "phone": "Telefón",
 
     "latitude": "Zemepisná šírka",
-    "longitude": "Zemepisná dĺžka"
+    "longitude": "Zemepisná dĺžka",
+
+    "region": "Kraj / Región"
 }

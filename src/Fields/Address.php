@@ -1,14 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Wame\LaravelNovaAddressField\Fields;
 
-use Exception;
-use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Fields\SupportsDependentFields;
 use Rinvex\Country\CountryLoader;
+use Rinvex\Country\CountryLoaderException;
 use Wame\LaravelNovaAddressField\Casts\AddressCast;
 
 class Address extends Field
@@ -24,7 +23,7 @@ class Address extends Field
 
     protected ?bool $dependentShouldEmitChangesEvent = true;
 
-    public function __construct($name, $attribute = null, callable $resolveCallback = null)
+    public function __construct($name, $attribute = null, ?callable $resolveCallback = null)
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
@@ -40,9 +39,10 @@ class Address extends Field
             'with_name' => true,
             'with_phone' => false,
             'with_gps' => false,
+            'with_region' => false,
         ]);
 
-        if (!isset($this->meta['country_list'])) {
+        if (! isset($this->meta['country_list'])) {
             $countryList = $this->getCountryList();
             $this->withMeta(['country_list' => $countryList]);
         }
@@ -56,7 +56,7 @@ class Address extends Field
             $return['value'] = $return['value']->toJson();
         }
 
-        if (!isset($return['value'])) {
+        if (! isset($return['value'])) {
             $return['value'] = [];
         }
 
@@ -136,9 +136,13 @@ class Address extends Field
         return $this->withMeta(['with_gps' => true]);
     }
 
+    public function withRegion(): Address
+    {
+        return $this->withMeta(['with_region' => true]);
+    }
+
     /**
-     * @return array
-     * @throws \Rinvex\Country\CountryLoaderException
+     * @throws CountryLoaderException
      */
     private function getCountryList(): array
     {
@@ -149,7 +153,7 @@ class Address extends Field
             $country = country($item['iso_3166_1_alpha2']);
             $countryCode = $country->getIsoAlpha2();
 
-            $return[$countryCode] = $country->getName() . ' (' . $countryCode . ')';
+            $return[$countryCode] = $country->getName().' ('.$countryCode.')';
         }
 
         return $return;

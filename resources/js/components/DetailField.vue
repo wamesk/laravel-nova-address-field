@@ -14,6 +14,7 @@
                     {{ item.street }}<br>
                     {{ item.zip_code }} {{ item.city }}<br>
                     {{ country(item.country) }}
+                    <div v-if="item.region">{{ item.region }}</div>
 
                     <div v-if="item.company === '1' || field.with_phone" class="mt-2">
                         <div v-if="item.business_id">{{ __('business_id') }} {{ item.business_id }}</div>
@@ -30,6 +31,7 @@
                 {{ address.street }}<br>
                 {{ address.zip_code }} {{ address.city }}<br>
                 {{ country(address.country) }}
+                <div v-if="address.region">{{ address.region }}</div>
 
                 <div v-if="address.company === '1' || field.with_phone" class="mt-2">
                     <div v-if="address.business_id">{{ __('business_id') }}: {{ address.business_id }}</div>
