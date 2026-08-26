@@ -8,7 +8,8 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "nova:install": "npm --prefix='../../vendor/laravel/nova' ci"
+        "nova:install": "npm --prefix='../../vendor/laravel/nova' ci",
+        "css": "sass resources/css/field.scss resources/css/field.css"
     },
     "devDependencies": {
         "@vue/compiler-sfc": "^3.2.22",
@@ -16,6 +17,7 @@
         "laravel-mix": "^6.0.41",
         "lodash": "^4.17.21",
         "postcss": "^8.3.11",
+        "sass": "^1.77.0",
         "vue-loader": "^16.8.3",
         "webpack": "5.102.0"
     },

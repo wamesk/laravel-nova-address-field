@@ -38,9 +38,11 @@ class Address extends Field
         $this->dependentShouldEmitChangesEvent = true;
 
         $this->withMeta([
+            'default_address_mode' => 'google',
             'default_company' => '0',
-            'google_maps_api_key' => env('GOOGLE_MAPS_API_KEY'),
+            'google_maps_api_key' => config('googlemaps.key') ?: env('GOOGLE_MAPS_API_KEY'),
             'only_company' => false,
+            'with_address_mode_switch' => true,
             'with_address_suggestions' => true,
             'with_company' => true,
             'with_company_autocomplete' => true,
@@ -153,6 +155,23 @@ class Address extends Field
     public function withoutAddressSuggestions(): Address
     {
         return $this->withMeta(['with_address_suggestions' => false]);
+    }
+
+    /**
+     * Hide the switch between Google address suggestions and manual entry.
+     * The field then stays in the mode given by default_address_mode.
+     */
+    public function withoutAddressModeSwitch(): Address
+    {
+        return $this->withMeta(['with_address_mode_switch' => false]);
+    }
+
+    /**
+     * Start the field in manual entry mode instead of Google address suggestions
+     */
+    public function defaultManualAddress(): Address
+    {
+        return $this->withMeta(['default_address_mode' => 'manual']);
     }
 
     /**

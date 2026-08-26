@@ -16,7 +16,7 @@ class LaravelNovaAddressFieldServiceProvider extends ServiceProvider
             Nova::style('address', __DIR__ . '/../../dist/css/field.css');
             Nova::script('address', __DIR__ . '/../../dist/js/field.js');
             Nova::translations(__DIR__ . '/../../resources/lang/' . app()->getLocale() . '.json');
-            Nova::provideToScript(['google_maps_api_key' => env('GOOGLE_MAPS_API_KEY')]);
+            Nova::provideToScript(['google_maps_api_key' => config('googlemaps.key') ?: env('GOOGLE_MAPS_API_KEY')]);
         });
 
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'translations');

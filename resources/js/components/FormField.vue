@@ -8,30 +8,56 @@
         <template #field>
             <form autocomplete="off">
               <div class="address-field-group">
-                <div v-if="currentField.with_company && !currentField.only_company" class="radio-wrapper">
-                    <label for="addr_personal">
-                        <input
+                <div v-if="showCompanySwitch || showAddressModeSwitch" class="switch-row">
+                    <div v-if="showCompanySwitch" class="pill-switch" role="group">
+                        <button
                             id="addr_personal"
-                            type="radio"
-                            class="checked:border-primary-500"
-                            :class="errorClasses"
-                            v-model="formData.company"
-                            value="0"
+                            type="button"
+                            class="pill-option"
+                            :class="{ 'is-active': formData.company === '0' }"
+                            :aria-pressed="formData.company === '0'"
+                            @click="formData.company = '0'"
                         >
-                        {{ __('personal') }}
-                    </label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            {{ __('personal') }}
+                        </button>
 
-                    <label for="addr_company">
-                        <input
+                        <button
                             id="addr_company"
-                            type="radio"
-                            class="peer/draft"
-                            :class="errorClasses"
-                            v-model="formData.company"
-                            value="1"
+                            type="button"
+                            class="pill-option"
+                            :class="{ 'is-active': formData.company === '1' }"
+                            :aria-pressed="formData.company === '1'"
+                            @click="formData.company = '1'"
                         >
-                        {{ __('company') }}
-                    </label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                            {{ __('company') }}
+                        </button>
+                    </div>
+
+                    <div v-if="showAddressModeSwitch" class="pill-switch pill-switch-end" role="group">
+                        <button
+                            type="button"
+                            class="pill-option"
+                            :class="{ 'is-active': !manualAddress }"
+                            :aria-pressed="!manualAddress"
+                            @click="setManualAddress(false)"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            {{ __('address_mode_google') }}
+                        </button>
+
+                        <button
+                            type="button"
+                            class="pill-option"
+                            :class="{ 'is-active': manualAddress }"
+                            :aria-pressed="manualAddress"
+                            @click="setManualAddress(true)"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                            {{ __('address_mode_manual') }}
+                        </button>
+                    </div>
                 </div>
 
                 <div v-if="showCompany && showName" class="input-wrapper">
@@ -77,7 +103,7 @@
 
                 <div class="input-wrapper">
                     <GMapAutocomplete
-                        v-if="currentField.with_address_suggestions && currentField.google_maps_api_key"
+                        v-if="useGoogleAutocomplete"
                         id="addr_str_eet"
                         type="text"
                         class="w-full form-control form-input form-control-bordered"
@@ -101,7 +127,12 @@
                         v-model="formData.street"
                         :required="isRequired('street')"
                         autocomplete="one-time-code"
+                        @input="clearCoordinatesOnManualEdit"
                     />
+
+                    <p v-if="showAddressModeSwitch && !manualAddress" class="address-mode-hint">
+                        {{ __('address_mode_hint') }}
+                    </p>
                 </div>
 
                 <div class="row">
@@ -115,6 +146,7 @@
                             v-model="formData.zip_code"
                             :required="isRequired('zip_code')"
                             autocomplete="off"
+                            @input="clearCoordinatesOnManualEdit"
                         />
                     </div>
 
@@ -128,6 +160,7 @@
                             v-model="formData.city"
                             :required="isRequired('city')"
                             autocomplete="off"
+                            @input="clearCoordinatesOnManualEdit"
                         />
                     </div>
                 </div>
@@ -140,6 +173,7 @@
                         v-model="formData.country"
                         :required="isRequired('country')"
                         autocomplete="off"
+                        @change="clearCoordinatesOnManualEdit"
                     >
                         <option
                             disabled
@@ -267,6 +301,7 @@ export default {
 
     data() {
         return {
+            manualAddress: (this.field.default_address_mode ?? 'google') === 'manual',
             formData: {
                 first_name: '',
                 last_name: '',
@@ -360,10 +395,29 @@ export default {
             formData.append(this.currentField.attribute, this.value || '')
         },
 
+        /**
+        * Switch between Google address suggestions and manual entry.
+        * Already filled values are kept — only the street input is swapped.
+        */
+        setManualAddress(manual) {
+            this.manualAddress = manual
+        },
+
+        /**
+        * Coordinates come from Google. Once the address is edited by hand they no longer
+        * match it, so they are dropped instead of pointing at a different place.
+        */
+        clearCoordinatesOnManualEdit() {
+            if (!this.manualAddress) {
+                return
+            }
+
+            this.formData.latitude = ''
+            this.formData.longitude = ''
+        },
+
         addressSuggestions(place) {
             let address = getAddressFromPlace(place)
-            console.log('place', place)
-            console.log('address', address)
 
             this.formData.street = address.street
             this.formData.zip_code = address.zipCode
@@ -405,6 +459,18 @@ export default {
     },
 
     computed: {
+        addressSuggestionsAvailable() {
+            return Boolean(this.currentField.with_address_suggestions && this.currentField.google_maps_api_key)
+        },
+        showCompanySwitch() {
+            return Boolean(this.currentField.with_company && !this.currentField.only_company)
+        },
+        showAddressModeSwitch() {
+            return this.addressSuggestionsAvailable && this.currentField.with_address_mode_switch !== false
+        },
+        useGoogleAutocomplete() {
+            return this.addressSuggestionsAvailable && !this.manualAddress
+        },
         showCompany() {
             return this.currentField.only_company || (this.currentField.with_company && this.formData.company === '1')
         },
